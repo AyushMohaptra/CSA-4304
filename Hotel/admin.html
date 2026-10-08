@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Admin</h1>
+<nav><a href="index.html">Home</a>
+<a href="Rooms.html">ROoms</a>
+</nav></header>
+<main>
+<h2>Admin Dashboard</h2>
+<div class="box">
+<h3>Add Rooms</h3><form onsubmit="alert('R added!');return false;">
+<label>Book Name</label>
+<input required>
+<label>Room</label>
+<input required><label>Cost</label>
+<input type="number"><label>number</label>
+<input type="number"><button>Add Room</button>
+</form>
+</div>
+<div class="box">
+<h3>Issue rooms</h3>
+<label>name</label>
+<input><label>room</label>
+<select><option>type 1</option>
+<option>type 2</option>
+</select><label>Check in Date</label>
+<input type="date">
+<label>Check out Date</label>
+<input type="date">
+<button onclick="alert('ROom issued!')">Issue ROom</button>
+</div>
+<div class="box">
+<h3>Check out </h3>
+<p>Room 2: Demo Customer</p>
+<button onclick="alert('Check out successful!')">Mark Available</button></div>
+</main>
+</body>
+</html>

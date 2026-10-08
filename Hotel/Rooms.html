@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Room</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Library</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="rooms.html">Books</a>
+<a href="materials.html">Materials</a>
+</nav>
+</header>
+<main>
+<h2>Search Rooms</h2>
+<input id="search" placeholder="Search room..." onkeyup="search()">
+<table id="rooms">
+<tr>
+<th>Room</th>
+<th>Size</th>
+<th>Cost</th>
+<th>Available</th>
+</tr>
+<tr>
+<td>1</td>
+<td>type 1</td>
+<td>2020</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>2</td>
+<td>type 2</td>
+<td>2000</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>3</td>
+<td>type 3</td>
+<td>4000</td>
+<td>No</td>
+</tr>
+<tr>
+<td>4</td>
+<td>type 1</td>
+<td>2000</td>
+<td>Yes</td>
+</tr>
+</table>
+</main>
+<script>
+function search(){let x=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('#books tr').forEach((r,i)=>{if(i)r.style.display=r.innerText.toLowerCase().includes(x)?'':'none';});}
+</script>
+</body>
+</html>

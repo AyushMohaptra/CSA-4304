@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Library</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="books.html">Books</a>
+<a href="materials.html">Materials</a>
+</nav>
+</header>
+<main>
+<h2>Search Books</h2>
+<input id="search" placeholder="Search book..." onkeyup="search()">
+<table id="books">
+<tr>
+<th>Book</th>
+<th>Author</th>
+<th>Year</th>
+<th>Available</th>
+</tr>
+<tr>
+<td>Database System Concepts</td>
+<td>Silberschatz</td>
+<td>2020</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Operating System Concepts</td>
+<td>Galvin</td>
+<td>2019</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Clean Code</td>
+<td>Robert Martin</td>
+<td>2018</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Engineering Mathematics</td>
+<td>B. S. Grewal</td>
+<td>2021</td>
+<td>Yes</td>
+</tr>
+</table>
+</main>
+<script>
+function search(){let x=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('#books tr').forEach((r,i)=>{if(i)r.style.display=r.innerText.toLowerCase().includes(x)?'':'none';});}
+</script>
+</body>
+</html>

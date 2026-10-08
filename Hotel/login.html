@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>HOTEL LOGIN</h1>
+</header>
+<main>
+<div class="box">
+<h2>Login</h2>
+<form onsubmit="login();return false;">
+<label>Email</label>
+<input id="email" required>
+<label>Password</label>
+<input id="password" type="password" required>
+<button>Login</button>
+</form>
+<p id="msg"></p>
+<p>Demo: admin@hotel.com / admin123</p>
+</div></main>
+<script>
+function login(){let e=document.getElementById('email').value,p=document.getElementById('password').value;
+if(e==='admin@hotel.com'&&p==='admin123')location='admin.html';
+else if(e==='customer@hotel.com'&&p==='customer123')location='dashboard.html';
+else document.getElementById('msg').innerHTML='Invalid login';}
+</script>
+</body>
+</html>

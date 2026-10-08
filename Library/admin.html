@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Admin</h1>
+<nav><a href="index.html">Home</a>
+<a href="books.html">Books</a>
+</nav></header>
+<main>
+<h2>Admin Dashboard</h2>
+<div class="box">
+<h3>Add Book</h3><form onsubmit="alert('Book added!');return false;">
+<label>Book Name</label>
+<input required>
+<label>Author</label>
+<input required><label>Year</label>
+<input type="number"><label>Copies</label>
+<input type="number"><button>Add Book</button>
+</form>
+</div>
+<div class="box">
+<h3>Issue Book</h3>
+<label>Student</label>
+<input><label>Book</label>
+<select><option>Database System Concepts</option>
+<option>Operating System Concepts</option>
+</select><label>Issue Date</label>
+<input type="date">
+<label>Return Date</label>
+<input type="date">
+<button onclick="alert('Book issued!')">Issue Book</button>
+</div>
+<div class="box">
+<h3>Return Book</h3>
+<p>Database System Concepts — Student: Demo Student</p>
+<button onclick="alert('Book returned!')">Mark Returned</button></div>
+</main>
+</body>
+</html>
