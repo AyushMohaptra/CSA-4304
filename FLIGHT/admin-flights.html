@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Manage Flights</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="top"><h2>✈ Admin - Flights</h2><nav><a href="admin.html">Admin Home</a></nav></div></header>
+<main>
+<h1>Add / Update Flight</h1>
+<form onsubmit="adminSave(event)">
+<div class="grid">
+<div><label>Flight Number</label><input type="text" required></div>
+<div><label>Airline</label><input type="text" required></div>
+<div><label>From</label><select><option>Chennai</option><option>Delhi</option><option>Bangalore</option><option>Mumbai</option></select></div>
+<div><label>To</label><select><option>Delhi</option><option>Chennai</option><option>Bangalore</option><option>Mumbai</option></select></div>
+<div><label>Departure</label><input type="time" required></div>
+<div><label>Arrival</label><input type="time" required></div>
+</div>
+<input type="submit" value="Save Flight">
+</form>
+<h2>Flight Schedule</h2>
+<table>
+<tr><th>Flight</th><th>Route</th><th>Departure</th><th>Seats</th></tr>
+<tr><td>SKY 101</td><td>Chennai - Delhi</td><td>06:30 AM</td><td>42</td></tr>
+<tr><td>SKY 202</td><td>Bangalore - Mumbai</td><td>10:15 AM</td><td>31</td></tr>
+<tr><td>SKY 303</td><td>Chennai - Hyderabad</td><td>02:45 PM</td><td>26</td></tr>
+</table>
+</main>
+<footer>SkyBook Administration</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

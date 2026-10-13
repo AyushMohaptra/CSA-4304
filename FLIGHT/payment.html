@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Ticket Payment</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="top"><h2>✈ SkyBook</h2><nav><a href="index.html">Home</a><a href="my-ticket.html">My Ticket</a></nav></div></header>
+<main>
+  <h1>Ticket Payment</h1>
+  <div class="summary">
+    <h3>Booking Summary</h3>
+    <p>Flight: SKY 101 - Chennai → Delhi</p>
+    <p>Class: Economy</p>
+    <p>Seat: 12A</p>
+    <p class="price">Total Fare: ₹5,450</p>
+  </div>
+  <form onsubmit="makePayment(event)">
+    <label>Payment Method</label>
+    <select><option>Credit / Debit Card</option><option>UPI</option><option>Net Banking</option></select>
+    <label>Card / UPI Number</label>
+    <input type="text" required placeholder="Enter payment details">
+    <input type="submit" value="Pay ₹5,450">
+  </form>
+</main>
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

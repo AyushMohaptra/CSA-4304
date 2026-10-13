@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beauty Parlour Booking</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>💅 Glow Beauty Parlour</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="admin.html">Manager</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Our Services</h2>
+    <input id="search" placeholder="Search services..." oninput="showServices()">
+    <div id="services"></div>
+
+    <h2>Book an Appointment</h2>
+    <label>Your name <input id="customer" placeholder="Enter your name"></label>
+    <label>Service
+      <select id="service">
+        <option>Haircut</option><option>Facial</option><option>Manicure</option>
+        <option>Hair Colour</option><option>Bridal Makeup</option>
+      </select>
+    </label>
+    <label>Stylist
+      <select id="stylist"><option>Anu</option><option>Priya</option><option>Meera</option></select>
+    </label>
+    <label>Date <input type="date" id="date"></label>
+    <label>Time
+      <select id="time">
+        <option value="10:00">10:00 AM</option><option value="11:00">11:00 AM</option>
+        <option value="12:00">12:00 PM</option><option value="14:00">2:00 PM</option>
+        <option value="15:00">3:00 PM</option><option value="16:00">4:00 PM</option>
+      </select>
+    </label>
+    <label>Payment
+      <select id="payment"><option>Pay at parlour</option><option>Pay full online (demo)</option><option>Pay ₹200 deposit (demo)</option></select>
+    </label>
+    <button onclick="bookAppointment()">Book Appointment</button>
+    <p id="message"></p>
+
+    <h2>My Appointments</h2>
+    <div id="myAppointments">No appointments yet.</div>
+
+    <h2>Feedback</h2>
+    <label>Your feedback <textarea id="feedback" placeholder="Tell us about your experience"></textarea></label>
+    <button onclick="sendFeedback()">Submit Feedback</button>
+    <p id="feedbackMessage"></p>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>

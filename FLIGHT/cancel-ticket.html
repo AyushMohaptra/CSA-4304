@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Cancel Ticket</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="top"><h2>✈ SkyBook</h2><nav><a href="index.html">Home</a><a href="my-ticket.html">My Ticket</a></nav></div></header>
+<main>
+  <h1>Cancel Ticket</h1>
+  <form onsubmit="cancelFlight(event)">
+    <label>PNR Number</label>
+    <input type="text" placeholder="SK4589217" required>
+    <input type="submit" value="Search Booking">
+  </form>
+  <div class="card">
+    <h3>Cancellation Policy</h3>
+    <p>More than 48 hours: 90% refund</p>
+    <p>24-48 hours: 75% refund</p>
+    <p>Less than 24 hours: 50% refund</p>
+  </div>
+</main>
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

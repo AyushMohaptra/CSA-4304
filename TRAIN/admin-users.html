@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head><title>Manage Users</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h2>Railway Reservation</h2><nav>
+<a href="index.html">Home</a>
+<a href="trains.html">Search Trains</a>
+<div class="dropdown">
+  <button class="dropbtn">Reservations ▾</button>
+  <div class="dropdown-content">
+    <a href="booking.html">Book Ticket</a>
+    <a href="pnr.html">PNR Status</a>
+    <a href="dashboard.html">My Dashboard</a>
+    <a href="cancel.html">Cancel Ticket</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Account ▾</button>
+  <div class="dropdown-content">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="forgot.html">Forgot Password</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Admin ▾</button>
+  <div class="dropdown-content">
+    <a href="admin.html">Admin Panel</a>
+    <a href="admin-trains.html">Manage Trains</a>
+    <a href="admin-users.html">Manage Users</a>
+    <a href="admin-fares.html">Manage Fares</a>
+    <a href="admin-refund.html">Refund Rules</a>
+    <a href="report.html">Reports</a>
+  </div>
+</div>
+</nav></header>
+<main>
+<h1>Registered Passengers</h1>
+<table>
+<tr><th>Name</th><th>Email</th><th>Phone</th><th>Action</th></tr>
+<tr><td>Rahul</td><td>rahul@example.com</td><td>9876543210</td><td><button onclick="deleteUser()">Delete</button></td></tr>
+<tr><td>Anu</td><td>anu@example.com</td><td>9123456780</td><td><button onclick="deleteUser()">Delete</button></td></tr>
+</table>
+</main>
+<footer>Online Train Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

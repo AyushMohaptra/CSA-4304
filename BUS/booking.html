@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Ticket</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><h2>Online Bus Booking</h2><nav><a href="index.html">Home</a><a href="buses.html">Buses</a><a href="dashboard.html">My Bookings</a></nav></header>
+<main>
+  <h1>Book Ticket</h1>
+  <form onsubmit="bookTicket(event)">
+    <label>Bus</label>
+    <select required>
+      <option>Chennai Express</option>
+      <option>Green Travels</option>
+      <option>City Rider</option>
+    </select>
+
+    <label>Seat</label>
+    <select required>
+      <option>Seat 1</option><option>Seat 2</option><option>Seat 3</option>
+      <option>Seat 4</option><option>Seat 5</option>
+    </select>
+
+    <label>Passenger Name</label>
+    <input type="text" required>
+
+    <label>Age</label>
+    <input type="number" required>
+
+    <label>Phone</label>
+    <input type="tel" required>
+
+    <input type="submit" value="Make Payment">
+  </form>
+</main>
+<footer>Online Bus Booking System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

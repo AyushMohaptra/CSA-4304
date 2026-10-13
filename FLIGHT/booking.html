@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Flight Ticket</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="top"><h2>✈ SkyBook</h2><nav>
+    <a href="index.html">Home</a><a href="search-flight.html">Search Flights</a><a href="my-ticket.html">My Ticket</a><a href="login.html">Login</a>
+  </nav></div>
+</header>
+
+<main>
+  <h1>Book Flight Ticket</h1>
+  <form onsubmit="goToPayment(event)">
+    <div class="grid">
+      <div><label>Flight</label><select id="selectedFlight">
+        <option>SKY 101 - Chennai to Delhi</option>
+        <option>SKY 202 - Bangalore to Mumbai</option>
+        <option>SKY 303 - Chennai to Hyderabad</option>
+        <option>SKY 404 - Delhi to Mumbai</option>
+      </select></div>
+      <div><label>Travel Class</label><select id="bookingClass" onchange="updateSeats()">
+        <option value="Economy">Economy</option>
+        <option value="Business">Business</option>
+      </select></div>
+      <div><label>Travel Date</label><input type="date" required></div>
+      <div><label>Seat</label><select id="seat"><option>12A</option><option>12B</option><option>12C</option><option>13A</option><option>13B</option></select></div>
+    </div>
+
+    <h2>Passenger Details</h2>
+    <div class="grid">
+      <div><label>Passenger Name</label><input type="text" required></div>
+      <div><label>Age</label><input type="number" min="1" required></div>
+      <div><label>Gender</label><select><option>Male</option><option>Female</option><option>Other</option></select></div>
+      <div><label>Phone</label><input type="tel" required></div>
+      <div><label>Email</label><input type="email" required></div>
+      <div><label>Passport / ID</label><input type="text" required></div>
+    </div>
+
+    <div class="notice">Selected class: <b id="classText">Economy</b> | Seat availability: <b id="seatCount">42</b></div>
+    <input type="submit" value="Continue to Payment">
+  </form>
+</main>
+
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

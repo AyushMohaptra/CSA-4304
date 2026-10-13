@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head><title>Search Trains</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h2>Railway Reservation</h2><nav>
+<a href="index.html">Home</a>
+<a href="trains.html">Search Trains</a>
+<div class="dropdown">
+  <button class="dropbtn">Reservations ▾</button>
+  <div class="dropdown-content">
+    <a href="booking.html">Book Ticket</a>
+    <a href="pnr.html">PNR Status</a>
+    <a href="dashboard.html">My Dashboard</a>
+    <a href="cancel.html">Cancel Ticket</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Account ▾</button>
+  <div class="dropdown-content">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="forgot.html">Forgot Password</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Admin ▾</button>
+  <div class="dropdown-content">
+    <a href="admin.html">Admin Panel</a>
+    <a href="admin-trains.html">Manage Trains</a>
+    <a href="admin-users.html">Manage Users</a>
+    <a href="admin-fares.html">Manage Fares</a>
+    <a href="admin-refund.html">Refund Rules</a>
+    <a href="report.html">Reports</a>
+  </div>
+</div>
+</nav></header>
+<main>
+<h1>Search Trains</h1>
+<form class="search-box" onsubmit="filterTrains(event)">
+  <div><label>From</label><select id="searchFrom" required>
+    <option value="">Select</option><option>Chennai</option><option>Bangalore</option>
+    <option>Mysore</option><option>Coimbatore</option><option>Madurai</option>
+  </select></div>
+  <div><label>To</label><select id="searchTo" required>
+    <option value="">Select</option><option>Chennai</option><option>Bangalore</option>
+    <option>Mysore</option><option>Coimbatore</option><option>Madurai</option>
+  </select></div>
+  <div><label>Date</label><input id="searchDate" type="date" required></div>
+  <input type="submit" value="Search Trains">
+</form>
+
+<p id="searchMessage" class="notice">Showing all available trains.</p>
+
+<div id="train1" class="card train-card" data-from="Chennai" data-to="Bangalore">
+<div><h3>12601 - Chennai Express</h3><p>Chennai → Bangalore</p><p>06:00 AM → 12:30 PM</p>
+<span class="badge">AC 2 Tier: 12 seats</span> <span class="badge">Sleeper: 45 seats</span></div>
+<a class="button" href="booking.html">Book</a>
+</div>
+
+<div id="train2" class="card train-card" data-from="Chennai" data-to="Mysore">
+<div><h3>16021 - Kaveri Express</h3><p>Chennai → Mysore</p><p>08:30 PM → 07:00 AM</p>
+<span class="badge">AC 3 Tier: 16 seats</span> <span class="badge">Sleeper: 30 seats</span></div>
+<a class="button" href="booking.html">Book</a>
+</div>
+
+<div id="train3" class="card train-card" data-from="Chennai" data-to="Coimbatore">
+<div><h3>12679 - Coimbatore Intercity</h3><p>Chennai → Coimbatore</p><p>07:15 AM → 01:30 PM</p>
+<span class="badge">Chair Car: 25 seats</span> <span class="badge">Second Sitting: 60 seats</span></div>
+<a class="button" href="booking.html">Book</a>
+</div>
+
+<div id="train4" class="card train-card" data-from="Bangalore" data-to="Mysore">
+<div><h3>16215 - Mysore Express</h3><p>Bangalore → Mysore</p><p>09:00 AM → 12:00 PM</p>
+<span class="badge">AC Chair Car: 18 seats</span> <span class="badge">Second Sitting: 50 seats</span></div>
+<a class="button" href="booking.html">Book</a>
+</div>
+
+<div id="noResults" class="notice hidden">No trains found for the selected route.</div>
+</main>
+<footer>Online Railway Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

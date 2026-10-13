@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SkyBook - Flight Reservation</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="top">
+    <h2>✈ SkyBook</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <a href="#">Flights ▾</a>
+        <div class="dropmenu">
+          <a href="search-flight.html">Search Flights</a>
+          <a href="booking.html">Book Ticket</a>
+          <a href="booking-status.html">Booking Status</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#">My Account ▾</a>
+        <div class="dropmenu">
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="my-ticket.html">My Ticket</a>
+          <a href="cancel-ticket.html">Cancel Ticket</a>
+        </div>
+      </div>
+      <a href="feedback.html">Feedback</a>
+      <div class="dropdown">
+        <a href="#">Admin ▾</a>
+        <div class="dropmenu">
+          <a href="admin-login.html">Admin Login</a>
+          <a href="admin.html">Admin Panel</a>
+          <a href="admin-report.html">Reports</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Book Your Flight</h1>
+    <p>Search flights, choose your seat and get your e-ticket instantly.</p>
+  </div>
+
+  <div class="search-box">
+    <h2>Search Flights</h2>
+    <form action="search-flight.html" method="get">
+      <div class="grid">
+        <div>
+          <label>From</label>
+          <select name="from" required>
+            <option value="">Select Airport</option>
+            <option value="Chennai">Chennai (MAA)</option>
+            <option value="Bangalore">Bangalore (BLR)</option>
+            <option value="Delhi">Delhi (DEL)</option>
+            <option value="Mumbai">Mumbai (BOM)</option>
+            <option value="Hyderabad">Hyderabad (HYD)</option>
+          </select>
+        </div>
+        <div>
+          <label>To</label>
+          <select name="to" required>
+            <option value="">Select Airport</option>
+            <option value="Chennai">Chennai (MAA)</option>
+            <option value="Bangalore">Bangalore (BLR)</option>
+            <option value="Delhi">Delhi (DEL)</option>
+            <option value="Mumbai">Mumbai (BOM)</option>
+            <option value="Hyderabad">Hyderabad (HYD)</option>
+          </select>
+        </div>
+        <div>
+          <label>Date</label>
+          <input type="date" name="date" required>
+        </div>
+        <div>
+          <label>Class</label>
+          <select name="class">
+            <option value="All">All Classes</option>
+            <option value="Economy">Economy</option>
+            <option value="Business">Business</option>
+          </select>
+        </div>
+      </div>
+      <input type="submit" value="Search Flights">
+    </form>
+  </div>
+</section>
+
+<main>
+  <h2>Popular Destinations</h2>
+  <div class="cards">
+    <div class="card"><h3>Chennai → Delhi</h3><p>From ₹4,999</p></div>
+    <div class="card"><h3>Bangalore → Mumbai</h3><p>From ₹3,499</p></div>
+    <div class="card"><h3>Chennai → Hyderabad</h3><p>From ₹2,999</p></div>
+  </div>
+</main>
+
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+</body>
+</html>

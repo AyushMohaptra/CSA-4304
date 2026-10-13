@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin - Buy a Cake</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header><h1>Admin Panel</h1><nav><a href="index.html">Home</a><a href="login.html">Login</a></nav></header>
+  <main>
+    <h2>Demo Admin Login</h2>
+    <p><b>Username:</b> admin</p><p><b>Password:</b> admin123</p>
+    <label>Username <input id="username"></label>
+    <label>Password <input id="password" type="password"></label>
+    <button onclick="adminLogin()">Login</button>
+    <p id="message"></p>
+    <section id="admin" hidden>
+      <h2>Add a Cake</h2>
+      <label>Cake Name <input id="cakeName"></label>
+      <label>Category
+        <select id="cakeCategory"><option>Chocolate</option><option>Birthday</option><option>Fruit</option></select>
+      </label>
+      <label>Price <input id="cakePrice" type="number"></label>
+      <button onclick="addCake()">Add Cake</button>
+      <h2>Orders</h2><div id="adminOrders"></div>
+    </section>
+  </main>
+  <script src="js/admin.js"></script>
+</body>
+</html>

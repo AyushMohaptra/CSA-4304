@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buy a Cake</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>🎂 Buy a Cake</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Available Cakes</h2>
+    <input id="search" placeholder="Search cakes..." oninput="showCakes()">
+    <select id="category" onchange="showCakes()">
+      <option value="All">All Categories</option>
+      <option>Chocolate</option>
+      <option>Birthday</option>
+      <option>Fruit</option>
+    </select>
+    <div id="cakes"></div>
+
+    <h2>My Cart</h2>
+    <div id="cart">Cart is empty.</div>
+    <p id="total">Total: ₹0</p>
+    <button onclick="placeOrder()">Place Order</button>
+
+    <h2>My Orders</h2>
+    <div id="orders">No orders yet.</div>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>

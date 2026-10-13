@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f3f9fc; color: #263238; }
+header { background: #b9e2f2; padding: 15px; text-align: center; }
+nav a { margin: 0 7px; color: #174b63; }
+main { max-width: 850px; margin: 20px auto; padding: 20px; background: white; }
+input, select, textarea { padding: 8px; margin: 6px; max-width: 95%; }
+textarea { display: block; width: 90%; min-height: 60px; }
+button { padding: 9px 13px; margin: 6px; cursor: pointer; background: #1886ad; border: 0; color: white; border-radius: 4px; }
+label { display: block; margin: 10px 0; }
+.doctor, .appointment { border: 1px solid #d7e5eb; padding: 12px; margin: 10px 0; }
+.status { color: #087c5a; font-weight: bold; }

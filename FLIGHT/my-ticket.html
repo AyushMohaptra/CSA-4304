@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Ticket</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="top"><h2>✈ SkyBook</h2><nav><a href="index.html">Home</a><a href="search-flight.html">Search</a><a href="booking-status.html">Booking Status</a><a href="cancel-ticket.html">Cancel Ticket</a></nav></div></header>
+<main>
+  <h1>My Ticket</h1>
+  <div class="ticket">
+    <div class="ticket-head"><h2>SKYBOOK E-TICKET</h2><span class="confirmed">CONFIRMED</span></div>
+    <h3>PNR: SK4589217</h3>
+    <div class="grid">
+      <div><b>Flight</b><br>SKY 101</div>
+      <div><b>Route</b><br>Chennai → Delhi</div>
+      <div><b>Date</b><br>15 Oct 2026</div>
+      <div><b>Departure</b><br>06:30 AM</div>
+      <div><b>Passenger</b><br>Demo Passenger</div>
+      <div><b>Class</b><br>Economy</div>
+      <div><b>Seat</b><br>12A</div>
+      <div><b>Gate</b><br>G-04</div>
+    </div>
+    <hr>
+    <p><b>Fare:</b> ₹5,450 &nbsp; | &nbsp; <b>Payment:</b> Paid</p>
+    <button onclick="window.print()">Print Ticket</button>
+    <a class="button" href="cancel-ticket.html">Cancel Ticket</a>
+  </div>
+
+  <h2>Booking History</h2>
+  <table>
+    <tr><th>PNR</th><th>Flight</th><th>Route</th><th>Status</th></tr>
+    <tr><td>SK4589217</td><td>SKY 101</td><td>Chennai - Delhi</td><td>Confirmed</td></tr>
+    <tr><td>SK3120456</td><td>SKY 303</td><td>Chennai - Hyderabad</td><td>Completed</td></tr>
+  </table>
+</main>
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+</body>
+</html>

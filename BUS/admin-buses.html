@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Manage Buses</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h2>Admin - Manage Trains</h2><nav><a href="admin.html">Admin Home</a><a href="index.html">Home</a></nav></header>
+<main>
+<h1>Add / Update Trains</h1>
+<form onsubmit="saveTrain(event)">
+<label>Train Name</label><input type="text" required>
+<label>Seat Type</label><select><option>AC </option><option>Sleeper Coach</option><option>Coach</option></select>
+<label>Photo</label><input type="file">
+<label>Route</label><input type="text" placeholder="Chennai - Bangalore" required>
+<label>Description</label><textarea></textarea>
+<label>Available Seats</label><input type="number" required>
+<input type="submit" value="Save Bus">
+</form>
+
+<h2>Train List</h2>
+<table><tr><th>Train</th><th>Type</th><th>Route</th><th>Seats</th></tr>
+<tr><td>Chennai Express</td><td>AC </td><td>Chennai - Bangalore</td><td>25</td></tr>
+<tr><td>Green Travels</td><td>Sleeper Coach</td><td>Chennai - Coimbatore</td><td>18</td></tr></table>
+</main>
+<footer>Online Train Booking System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

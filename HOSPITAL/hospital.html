@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hospital Portal</title><link rel="stylesheet" href="css/style.css"></head>
+<body><header><h1>Hospital Portal</h1><nav><a href="index.html">Home</a><a href="admin.html">Admin</a></nav></header>
+<main><h2>Hospital Login</h2><p><b>Username:</b> hospital</p><p><b>Password:</b> hospital123</p>
+<label>Username <input id="username"></label><label>Password <input id="password" type="password"></label><button onclick="hospitalLogin()">Login</button><p id="message"></p>
+<section id="hospitalPanel" hidden><h2>Hospital Details</h2><label>Hospital name <input id="hospitalName" value="MedCare Hospital"></label><label>Location <input id="hospitalLocation" value="Chennai"></label><label>Address <input id="hospitalAddress" value="Chennai, Tamil Nadu"></label><button onclick="saveHospital()">Save Details</button><p id="saveMessage"></p><p><a id="mapLink" target="_blank" rel="noopener">View location on Google Maps</a></p></section></main>
+<script src="js/hospital.js"></script></body></html>

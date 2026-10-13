@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Manager</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h1>Salon Manager</h1><nav><a href="index.html">Home</a><a href="login.html">Customer Login</a></nav></header>
+<main>
+  <h2>Manager Login</h2>
+  <p><b>Username:</b> manager</p><p><b>Password:</b> salon123</p>
+  <label>Username <input id="username"></label><label>Password <input id="password" type="password"></label>
+  <button onclick="managerLogin()">Login</button><p id="message"></p>
+  <section id="manager" hidden>
+    <h2>Reservations Calendar / Bookings</h2>
+    <label>Filter date <input type="date" id="filterDate" onchange="showBookings()"></label>
+    <div id="bookings"></div>
+    <h2>Lock a time slot</h2>
+    <label>Date <input type="date" id="lockDate"></label>
+    <label>Time <select id="lockTime"><option>10:00</option><option>11:00</option><option>12:00</option><option>14:00</option><option>15:00</option><option>16:00</option></select></label>
+    <button onclick="lockSlot()">Lock Slot</button><p id="lockMessage"></p>
+  </section>
+</main>
+<script src="js/admin.js"></script>
+</body>
+</html>

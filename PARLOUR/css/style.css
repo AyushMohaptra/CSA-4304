@@ -1,0 +1,10 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #fff7fb; color: #333; }
+header { background: #eab4d0; padding: 15px; text-align: center; }
+nav a { margin: 0 8px; color: #333; }
+main { max-width: 800px; margin: 20px auto; padding: 20px; background: white; }
+input, select, textarea { padding: 8px; margin: 6px; max-width: 95%; }
+textarea { display: block; width: 90%; min-height: 60px; }
+button { padding: 9px 13px; margin: 6px; cursor: pointer; background: #b94d85; border: 0; color: white; border-radius: 4px; }
+label { display: block; margin: 10px 0; }
+.service, .booking { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+.status { color: #a33270; font-weight: bold; }

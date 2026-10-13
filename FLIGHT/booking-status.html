@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Booking Status</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="top"><h2>✈ SkyBook</h2><nav><a href="index.html">Home</a><a href="my-ticket.html">My Ticket</a></nav></div></header>
+<main>
+  <h1>View Booking Status</h1>
+  <form onsubmit="checkBooking(event)">
+    <label>PNR Number</label>
+    <input id="statusPnr" type="text" placeholder="SK4589217" required>
+    <input type="submit" value="Check Status">
+  </form>
+  <div id="statusResult"></div>
+</main>
+<footer>© 2026 SkyBook Flight Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

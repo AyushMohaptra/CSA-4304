@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head><title>Book Ticket</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h2>Railway Reservation</h2><nav>
+<a href="index.html">Home</a>
+<a href="trains.html">Search Trains</a>
+<div class="dropdown">
+  <button class="dropbtn">Reservations ▾</button>
+  <div class="dropdown-content">
+    <a href="booking.html">Book Ticket</a>
+    <a href="pnr.html">PNR Status</a>
+    <a href="dashboard.html">My Dashboard</a>
+    <a href="cancel.html">Cancel Ticket</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Account ▾</button>
+  <div class="dropdown-content">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="forgot.html">Forgot Password</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Admin ▾</button>
+  <div class="dropdown-content">
+    <a href="admin.html">Admin Panel</a>
+    <a href="admin-trains.html">Manage Trains</a>
+    <a href="admin-users.html">Manage Users</a>
+    <a href="admin-fares.html">Manage Fares</a>
+    <a href="admin-refund.html">Refund Rules</a>
+    <a href="report.html">Reports</a>
+  </div>
+</div>
+</nav></header>
+<main>
+<h1>Reserve Ticket</h1>
+<div class="notice">Demo system: select the train and class to view available seats.</div>
+<form onsubmit="bookTicket(event)">
+<label>Train</label>
+<select id="bookTrain" onchange="updateAvailability()" required>
+<option value="">Select Train</option>
+<option value="Chennai Express">12601 - Chennai Express</option>
+<option value="Kaveri Express">16021 - Kaveri Express</option>
+<option value="Coimbatore Intercity">12679 - Coimbatore Intercity</option>
+</select>
+
+<label>Journey Date</label><input type="date" required>
+<label>Origin Station</label><select required><option>Chennai Central</option><option>Bangalore</option><option>Mysore</option></select>
+<label>Destination Station</label><select required><option>Bangalore</option><option>Mysore</option><option>Coimbatore</option></select>
+
+<label>Class</label>
+<select id="classType" onchange="updateAvailability()" required>
+<option value="">Select Class</option><option value="AC 2 Tier">AC 2 Tier</option>
+<option value="AC 3 Tier">AC 3 Tier</option><option value="Sleeper">Sleeper</option>
+<option value="AC Chair Car">AC Chair Car</option><option value="Second Sitting">Second Sitting</option>
+</select>
+<p id="availability" class="badge">Select train and class</p>
+
+<label>Seat Preference</label>
+<select required><option>Window</option><option>Middle</option><option>Aisle</option></select>
+<label>Passenger Name</label><input type="text" required>
+<label>Age</label><input type="number" min="1" max="120" required>
+<label>Gender</label><select><option>Male</option><option>Female</option><option>Other</option></select>
+<label>Payment Mode</label><select required><option>Online Payment</option><option>Offline Payment</option></select>
+<input type="submit" value="Pay & Confirm Ticket">
+</form>
+</main>
+<footer>Online Railway Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

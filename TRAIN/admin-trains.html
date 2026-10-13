@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head><title>Manage Trains</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><h2>Railway Reservation</h2><nav>
+<a href="index.html">Home</a>
+<a href="trains.html">Search Trains</a>
+<div class="dropdown">
+  <button class="dropbtn">Reservations ▾</button>
+  <div class="dropdown-content">
+    <a href="booking.html">Book Ticket</a>
+    <a href="pnr.html">PNR Status</a>
+    <a href="dashboard.html">My Dashboard</a>
+    <a href="cancel.html">Cancel Ticket</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Account ▾</button>
+  <div class="dropdown-content">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="forgot.html">Forgot Password</a>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="dropbtn">Admin ▾</button>
+  <div class="dropdown-content">
+    <a href="admin.html">Admin Panel</a>
+    <a href="admin-trains.html">Manage Trains</a>
+    <a href="admin-users.html">Manage Users</a>
+    <a href="admin-fares.html">Manage Fares</a>
+    <a href="admin-refund.html">Refund Rules</a>
+    <a href="report.html">Reports</a>
+  </div>
+</div>
+</nav></header>
+<main>
+<h1>Add / Update Train</h1>
+<form onsubmit="saveTrain(event)">
+<label>Train Number</label><input type="text" required>
+<label>Train Name</label><input type="text" required>
+<label>Origin</label><input type="text" required>
+<label>Destination</label><input type="text" required>
+<label>Departure Time</label><input type="time" required>
+<label>Arrival Time</label><input type="time" required>
+<label>Available Seats</label><input type="number" required>
+<input type="submit" value="Save Train">
+</form>
+
+<h2>Train List</h2>
+<table>
+<tr><th>Number</th><th>Train</th><th>Route</th><th>Seats</th></tr>
+<tr><td>12601</td><td>Chennai Express</td><td>Chennai - Bangalore</td><td>77</td></tr>
+<tr><td>16021</td><td>Kaveri Express</td><td>Chennai - Mysore</td><td>54</td></tr>
+</table>
+</main>
+<footer>Online Train Reservation System</footer>
+<script src="js/script.js"></script>
+</body>
+</html>
