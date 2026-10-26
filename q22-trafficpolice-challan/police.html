@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficSquad E-Challan Portal | Traffic Police e-Challan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Traffic Police e-Challan</a>
+  <div class="nav-links">
+    <a href="index.html">Search Challan</a>
+    <a href="police.html" class="active">Officer FIR Entry</a>
+    <a href="rules.html">Traffic Penalties</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Police Officer FIR & Violation Booking</h2>
+  <div class="card" style="max-width:600px;">
+    <form onsubmit="fileChallan(event)">
+      <div class="form-group">
+        <label>Officer Badge ID</label>
+        <input type="text" id="offId" required placeholder="TP-8491">
+      </div>
+      <div class="form-group">
+        <label>Offender Vehicle Number</label>
+        <input type="text" id="offVeh" required placeholder="TN 01 AB 1234">
+      </div>
+      <div class="form-group">
+        <label>Violation Offence</label>
+        <select id="offType" onchange="updateFineAmt()">
+          <option value="1000">Without Helmet (₹1,000)</option>
+          <option value="1000">Signal Jumping / Red Light Jump (₹1,000)</option>
+          <option value="2000">Dangerous Over-Speeding (₹2,000)</option>
+          <option value="10000">Drunk & Drive Offence (₹10,000)</option>
+          <option value="500">Illegal Parking in No-Parking Zone (₹500)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Violation Location</label>
+        <input type="text" id="offLoc" required placeholder="Anna Salai Junction">
+      </div>
+      <div class="form-group">
+        <label>Photo Proof Attachment</label>
+        <input type="text" id="offProof" placeholder="traffic_cam_snap_984.jpg (Simulated)">
+      </div>
+      <button type="submit" class="btn btn-danger">Issue e-Challan / FIR</button>
+    </form>
+    <div id="policeAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 TrafficSquad E-Challan Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

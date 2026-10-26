@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Travels Agency | Register Account</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Wanderlust Travels</a>
+  <div class="nav-links">
+    <a href="index.html">Tour Packages</a>
+    <a href="book.html">Book Tour</a>
+    <a href="custom.html">Budget Calculator</a>
+    <a href="admin.html">Travel Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container" style="max-width: 480px; margin: 40px auto;">
+  <div class="card" style="padding: 24px; box-shadow: var(--shadow);">
+    <h2 style="margin-bottom: 6px;">Create New Account</h2>
+    <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 18px;">
+      Register as a Traveler or Administrator on Wanderlust Travels Agency.
+    </p>
+
+    <form id="regForm" onsubmit="handleRegister(event)">
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label style="display: block; font-weight: 500; font-size: 13px; margin-bottom: 5px;">Full Name *</label>
+        <input type="text" id="regName" class="form-control" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;" placeholder="e.g. Rahul Sharma" required>
+      </div>
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label style="display: block; font-weight: 500; font-size: 13px; margin-bottom: 5px;">Email Address / Username *</label>
+        <input type="email" id="regEmail" class="form-control" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;" placeholder="rahul@example.com" required>
+      </div>
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label style="display: block; font-weight: 500; font-size: 13px; margin-bottom: 5px;">Contact Phone *</label>
+        <input type="tel" id="regPhone" class="form-control" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;" placeholder="+91 98765 43210" required>
+      </div>
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label style="display: block; font-weight: 500; font-size: 13px; margin-bottom: 5px;">Password *</label>
+        <input type="password" id="regPass" class="form-control" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;" placeholder="Create password (e.g. 123)" required>
+      </div>
+      <div class="form-group" style="margin-bottom: 18px;">
+        <label style="display: block; font-weight: 500; font-size: 13px; margin-bottom: 5px;">Account Role</label>
+        <select id="regRole" class="form-control" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px;">
+          <option value="traveler">Traveler</option>
+          <option value="tour guide">Tour Guide</option>
+          <option value="agency admin">Agency Admin</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 10px; font-size: 14px; font-weight: 600;">Complete Registration</button>
+    </form>
+
+    <div id="regMsg" style="margin-top: 12px; font-size: 13px;"></div>
+
+    <div style="margin-top: 18px; text-align: center; font-size: 13px; border-top: 1px solid var(--border); padding-top: 14px;">
+      Already registered? <a href="login.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">Sign in here &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Wanderlust Travels Agency. All rights reserved.</p>
+</footer>
+
+<script>
+function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const pass = document.getElementById('regPass').value.trim();
+  const role = document.getElementById('regRole').value;
+  if (!name || !email || !pass) return;
+
+  const newUser = { name, email, phone, role };
+  let users = JSON.parse(localStorage.getItem('q20_wanderlust_travels_users') || '[]');
+  users.push(newUser);
+  localStorage.setItem('q20_wanderlust_travels_users', JSON.stringify(users));
+
+  const msg = document.getElementById('regMsg');
+  msg.innerHTML = '<div style="padding:10px; border-radius:6px; background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0;">Registration complete! Redirecting to login...</div>';
+  setTimeout(() => { window.location.href = 'login.html'; }, 600);
+}
+</script>
+</body>
+</html>

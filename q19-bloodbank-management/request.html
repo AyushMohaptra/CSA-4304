@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeFlow Blood Bank | Blood Bank Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Blood Bank Management System</a>
+  <div class="nav-links">
+    <a href="index.html">Inventory & Donors</a>
+    <a href="donor.html">Register as Donor</a>
+    <a href="request.html" class="active">Emergency Blood Request</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Emergency Blood Requisition</h2>
+  <div class="card" style="max-width:550px;">
+    <form onsubmit="requestBlood(event)">
+      <div class="form-group">
+        <label>Patient Full Name</label>
+        <input type="text" id="rqPatient" required placeholder="Meena Kumari">
+      </div>
+      <div class="form-group">
+        <label>Hospital Name & Ward</label>
+        <input type="text" id="rqHosp" required placeholder="Apollo Hospitals, ICU-3">
+      </div>
+      <div class="form-group">
+        <label>Required Blood Group</label>
+        <select id="rqGroup">
+          <option>O +ve</option><option>O -ve</option>
+          <option>A +ve</option><option>A -ve</option>
+          <option>B +ve</option><option>B -ve</option>
+          <option>AB +ve</option><option>AB -ve</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Units Required</label>
+        <input type="number" id="rqUnits" min="1" max="10" value="2">
+      </div>
+      <button type="submit" class="btn btn-danger">Broadcast Emergency Request</button>
+    </form>
+    <div id="requestAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 LifeFlow Blood Bank. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeFlow Blood Bank | Blood Bank Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Blood Bank Management System</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Inventory & Donors</a>
+    <a href="donor.html">Register as Donor</a>
+    <a href="request.html">Emergency Blood Request</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #991b1b, #ef4444);">
+    <h1>National Blood Management Network</h1>
+    <p>Real-time tracking of voluntary blood donations, regional inventory stocks & emergency hospital supplies.</p>
+  </div>
+  <h3>Available Blood Units Stock</h3>
+  <div class="card-grid" id="bloodStockGrid"></div>
+
+  <h3 style="margin-top:1.5rem;">Registered Voluntary Donors</h3>
+  <table>
+    <thead><tr><th>Donor Name</th><th>Blood Group</th><th>City</th><th>Last Donated</th><th>Contact</th></tr></thead>
+    <tbody id="donorTableBody"></tbody>
+  </table>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 LifeFlow Blood Bank. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

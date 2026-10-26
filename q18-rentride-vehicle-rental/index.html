@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentRide Vehicle Rentals | RentRide</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cat-pill {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .controls-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 0.75rem;
+      background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    @media (max-width: 850px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">RentRide</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Fleet Browse</a>
+    <a href="book.html">Reserve Vehicle</a>
+    <a href="history.html">Booking History</a>
+    <a href="admin.html">Fleet Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #0284c7, #2563eb);">
+    <h1>RentRide Self-Drive Vehicle Fleet</h1>
+    <p>Sanitized hatchbacks, sedans, 7-seater family SUVs & luxury rentals with zero security deposit options.</p>
+  </div>
+
+  <!-- Category Pills -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Vehicle Classifications</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="cat-pill active" onclick="selectFleetPill('all')">All Fleet</button>
+      <button class="cat-pill" onclick="selectFleetPill('Hatchback')">🚗 Economy Hatchbacks</button>
+      <button class="cat-pill" onclick="selectFleetPill('Sedan')">🚘 Premium Sedans</button>
+      <button class="cat-pill" onclick="selectFleetPill('SUV')">🚙 7-Seater SUVs (Popular)</button>
+      <button class="cat-pill" onclick="selectFleetPill('Luxury')">⭐ Luxury Class</button>
+    </div>
+  </div>
+
+  <!-- Search, Location, Category & Sorting Controls -->
+  <div class="controls-grid">
+    <div>
+      <input type="text" id="fleetSearch" placeholder="Search by model or type..." oninput="filterAndSortFleet()" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div>
+      <select id="fleetCat" onchange="filterAndSortFleet()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Vehicle Types</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Luxury">Luxury</option>
+      </select>
+    </div>
+    <div>
+      <select id="fleetLoc" onchange="filterAndSortFleet()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Pickup Hubs</option>
+        <option value="Airport Hub">Airport Hub</option>
+        <option value="City Center">City Center</option>
+        <option value="Suburban Hub">Suburban Hub</option>
+        <option value="Metro Station">Metro Station</option>
+      </select>
+    </div>
+    <div>
+      <select id="fleetSort" onchange="filterAndSortFleet()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="price_low">Fare: Low to High</option>
+        <option value="price_high">Fare: High to Low</option>
+        <option value="name">Model: A to Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Fleet Grid -->
+  <div class="card-grid" id="fleetGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 RentRide Vehicle Rentals. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

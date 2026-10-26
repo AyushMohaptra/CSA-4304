@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoadRescue Breakdown Assistance | On-Road Breakdown Assist</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">RoadRescue Assistance</a>
+  <div class="nav-links">
+    <a href="index.html">SOS Request</a>
+    <a href="mechanics.html">Mechanics Directory</a>
+    <a href="status.html">Dispatch Status</a>
+    <a href="admin.html">Rescue Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #c2410c, #f97316);">
+    <h1>24/7 On-Road Breakdown Assistance</h1>
+    <p>Stranded due to a flat tyre, engine failure, dead battery, or empty fuel? Help is 15 minutes away.</p>
+  </div>
+  <div class="card" style="max-width:550px;">
+    <h3>Immediate Assistance Request</h3>
+    <form onsubmit="requestRescue(event)">
+      <div class="form-group">
+        <label>Your Name & Phone</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" id="brkName" required placeholder="Name">
+          <input type="tel" id="brkPhone" required placeholder="Phone Number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Vehicle Model & Number</label>
+        <input type="text" id="brkVeh" required placeholder="e.g. Hyundai i20 (TN 07 CA 9081)">
+      </div>
+      <div class="form-group">
+        <label>Type of Breakdown Issue</label>
+        <select id="brkIssue">
+          <option>Flat Tyre / Puncture Repair</option>
+          <option>Dead Battery / Jump Start</option>
+          <option>Engine Breakdown / Overheating</option>
+          <option>Emergency Fuel Delivery</option>
+          <option>Towing Service Required</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Current Location / Landmark</label>
+        <input type="text" id="brkLoc" required placeholder="Near Toll Plaza, Outer Ring Road">
+      </div>
+      <button type="submit" class="btn btn-danger">Dispatch Nearest Mechanic</button>
+    </form>
+    <div id="rescueAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 RoadRescue Breakdown Assistance. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

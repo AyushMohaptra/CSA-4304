@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rescue Dispatch & Mechanic Admin | RoadRescue</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">RoadRescue Assistance</a>
+  <div class="nav-links">
+    <a href="index.html">SOS Request</a>
+    <a href="mechanics.html">Mechanics Directory</a>
+    <a href="status.html">Dispatch Status</a>
+    <a href="admin.html" class="active">Rescue Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Breakdown Service Administrator Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Approve licensed mechanics, verify certifications, and monitor live roadside SOS dispatches.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Live Roadside SOS Assistance Log</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Ticket #</th>
+            <th>Motorist</th>
+            <th>Vehicle & Issue</th>
+            <th>Location</th>
+            <th>Assigned Mechanic</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminRescueBody">
+          <tr>
+            <td><strong>SOS-5101</strong></td>
+            <td>R. Karthikeyan</td>
+            <td>Swift Dzire (Battery Dead)</td>
+            <td>GST Road, Near Chromepet Flyover</td>
+            <td>Apex Auto Works (Mobile Van #2)</td>
+            <td><button class="btn btn-sm" onclick="alert('Ticket SOS-5101 closed. On-site jumpstart completed.')">Mark Resolved</button></td>
+          </tr>
+          <tr>
+            <td><strong>SOS-5102</strong></td>
+            <td>P. Meenakshi</td>
+            <td>Honda Activa (Puncture)</td>
+            <td>Velachery Bypass Rd</td>
+            <td>Express Bike Care</td>
+            <td><button class="btn btn-sm" onclick="alert('Ticket SOS-5102 mechanic en-route confirmed via GPS.')">Confirm Dispatch</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Authorize Licensed Mechanic Garage</h3>
+    <form onsubmit="adminApproveMechanic(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Workshop / Garage Name</label>
+        <input type="text" id="mechShop" required placeholder="Ex: Precision Motors Garage">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Lead Mechanic Name</label>
+        <input type="text" id="mechName" required placeholder="G. Selvam">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>RTO License / Trade Certificate</label>
+        <input type="text" id="mechLic" required placeholder="LIC-TN09-8834">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">Authorize Garage</button>
+      </div>
+    </form>
+    <div id="mechAlert"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 RoadRescue Assistance. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+function adminApproveMechanic(e) {
+  e.preventDefault();
+  const shop = document.getElementById('mechShop').value.trim();
+  const lic = document.getElementById('mechLic').value.trim();
+  document.getElementById('mechAlert').innerHTML = `
+    <div class="card" style="margin-top:1rem; background:#ecfdf5; color:#065f46;">
+      Workshop <strong>${shop}</strong> (Trade Lic: ${lic}) verified and activated for GPS emergency dispatch.
+    </div>
+  `;
+  e.target.reset();
+}
+</script>
+</body>
+</html>

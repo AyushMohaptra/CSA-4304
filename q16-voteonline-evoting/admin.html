@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Commission Admin | VoteOnline</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">VoteOnline Platform</a>
+  <div class="nav-links">
+    <a href="index.html">Cast Ballot</a>
+    <a href="results.html">Live Tally</a>
+    <a href="about.html">Guidelines</a>
+    <a href="admin.html" class="active">Election Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Election Authority Administrative Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Allocate voters to election wards, approve voter registration, and audit ballot integrity.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Voter Ward Allocation Desk</h3>
+    <form onsubmit="adminAllocateWard(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Voter ID (EPIC #)</label>
+        <input type="text" id="vId" required placeholder="VOT-9842">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Voter Full Name</label>
+        <input type="text" id="vName" required placeholder="S. Sundaram">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Electoral Ward</label>
+        <select id="vWard">
+          <option>Ward 14 (North District)</option>
+          <option>Ward 22 (Central Metropolitan)</option>
+          <option>Ward 31 (South Suburban)</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">Authorize & Allocate Ward</button>
+      </div>
+    </form>
+    <div id="wardAlert"></div>
+  </div>
+
+  <div class="card">
+    <h3>Live Registered Candidates & Vote Audit</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Candidate</th>
+            <th>Party / Affiliation</th>
+            <th>Current Votes</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="adminTallyBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 VoteOnline Platform. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+function adminAllocateWard(e) {
+  e.preventDefault();
+  const id = document.getElementById('vId').value.trim();
+  const name = document.getElementById('vName').value.trim();
+  const ward = document.getElementById('vWard').value;
+  document.getElementById('wardAlert').innerHTML = `
+    <div class="card" style="margin-top:1rem; background:#ecfdf5; color:#065f46;">
+      Voter <strong>${name}</strong> (${id}) successfully allocated to <strong>${ward}</strong>.
+    </div>
+  `;
+  e.target.reset();
+}
+
+function renderAdminTally() {
+  const tbody = document.getElementById('adminTallyBody');
+  if (!tbody) return;
+  const tally = JSON.parse(localStorage.getItem('voteonline_tally') || '{}');
+  tbody.innerHTML = '';
+  for (const [cand, cnt] of Object.entries(tally)) {
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${cand}</strong></td>
+        <td>Official Candidate</td>
+        <td>${cnt}</td>
+        <td><span class="badge-tag">ACTIVE CONTEST</span></td>
+      </tr>
+    `;
+  }
+}
+document.addEventListener('DOMContentLoaded', renderAdminTally);
+</script>
+</body>
+</html>

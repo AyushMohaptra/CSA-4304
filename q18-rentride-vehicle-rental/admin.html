@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fleet & Rental Approvals Admin | RentRide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">RentRide</a>
+  <div class="nav-links">
+    <a href="index.html">Fleet Browse</a>
+    <a href="book.html">Reserve Vehicle</a>
+    <a href="history.html">Booking History</a>
+    <a href="admin.html" class="active">Fleet Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Fleet & Booking Administrator Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Manage vehicles, update rental rates, and approve customer rental appointments.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Pending Customer Rental Bookings (Approval Desk)</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Customer Name</th>
+            <th>Vehicle</th>
+            <th>Duration</th>
+            <th>Total Fare</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminBookingsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Add New Vehicle to Rental Fleet</h3>
+    <form onsubmit="adminAddVehicle(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Vehicle Model</label>
+        <input type="text" id="vehModel" required placeholder="Ex: Hyundai Creta SX">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Classification</label>
+        <select id="vehType">
+          <option>Economy Hatchback</option>
+          <option>Sedan</option>
+          <option>Compact SUV</option>
+          <option>Luxury 7-Seater</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Daily Rental Rate (₹)</label>
+        <input type="number" id="vehRate" required placeholder="2200">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">+ Add to Fleet</button>
+      </div>
+    </form>
+    <div id="vehAlert"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 RentRide Vehicle Rentals. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+function renderAdminBookings() {
+  const tbody = document.getElementById('adminBookingsBody');
+  if (!tbody) return;
+  const list = JSON.parse(localStorage.getItem('rentride_bookings') || '[]');
+  tbody.innerHTML = '';
+  list.forEach((b, idx) => {
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${b.id}</strong></td>
+        <td>${b.name}</td>
+        <td>${b.veh}</td>
+        <td>${b.days} day(s)</td>
+        <td>₹${b.fare}</td>
+        <td><span class="badge-tag" style="background:${b.status === 'APPROVED' ? '#ecfdf5' : '#fef3c7'}; color:${b.status === 'APPROVED' ? '#065f46' : '#92400e'}">${b.status}</span></td>
+        <td>
+          <button class="btn btn-sm" onclick="setBookingStatus(${idx}, 'APPROVED')">Approve</button>
+          <button class="btn btn-danger btn-sm" onclick="setBookingStatus(${idx}, 'REJECTED')">Reject</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function setBookingStatus(idx, status) {
+  const list = JSON.parse(localStorage.getItem('rentride_bookings') || '[]');
+  list[idx].status = status;
+  localStorage.setItem('rentride_bookings', JSON.stringify(list));
+  renderAdminBookings();
+  alert(`Booking ${list[idx].id} ${status}`);
+}
+
+function adminAddVehicle(e) {
+  e.preventDefault();
+  const m = document.getElementById('vehModel').value.trim();
+  const r = document.getElementById('vehRate').value;
+  document.getElementById('vehAlert').innerHTML = `
+    <div class="card" style="margin-top:1rem; background:#ecfdf5; color:#065f46;">
+      Vehicle <strong>${m}</strong> added to fleet at ₹${r}/day.
+    </div>
+  `;
+  e.target.reset();
+}
+
+document.addEventListener('DOMContentLoaded', renderAdminBookings);
+</script>
+</body>
+</html>

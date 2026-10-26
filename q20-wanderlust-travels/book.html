@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Travels Agency | Wanderlust Travels</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Wanderlust Travels</a>
+  <div class="nav-links">
+    <a href="index.html">Tour Packages</a>
+    <a href="book.html">Book Tour</a>
+    <a href="custom.html">Budget Calculator</a>
+    <a href="admin.html">Travel Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Book a Holiday Package</h2>
+  <div class="card" style="max-width:550px;">
+    <form onsubmit="bookTour(event)">
+      <div class="form-group">
+        <label>Primary Traveler Name</label>
+        <input type="text" id="trvName" required placeholder="Pooja Hegde">
+      </div>
+      <div class="form-group">
+        <label>Selected Destination</label>
+        <select id="trvDest">
+          <option value="14999">Goa Beach Retreat (₹14,999/person)</option>
+          <option value="24500">Kashmir Paradise (₹24,500/person)</option>
+          <option value="38000">Bali Tropical Escape (₹38,000/person)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Number of Travelers</label>
+        <input type="number" id="trvCount" min="1" max="10" value="2">
+      </div>
+      <div class="form-group">
+        <label>Travel Departure Date</label>
+        <input type="date" id="trvDate" required>
+      </div>
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+    <div id="tourAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Wanderlust Travels Agency. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

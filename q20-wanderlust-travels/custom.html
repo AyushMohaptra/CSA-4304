@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanderlust Travels Agency | Wanderlust Travels</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Wanderlust Travels</a>
+  <div class="nav-links">
+    <a href="index.html">Tour Packages</a>
+    <a href="book.html">Book Tour</a>
+    <a href="custom.html">Budget Calculator</a>
+    <a href="admin.html">Travel Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Custom Trip Cost Estimator</h2>
+  <div class="card" style="max-width:500px;">
+    <div class="form-group">
+      <label>Destination Category</label>
+      <select id="cDest">
+        <option value="3000">Domestic Hills / Beaches (₹3,000/day)</option>
+        <option value="7500">International Southeast Asia (₹7,500/day)</option>
+        <option value="14000">Europe / USA (₹14,000/day)</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Duration (Days)</label>
+      <input type="number" id="cDays" value="5" min="2">
+    </div>
+    <div class="form-group">
+      <label>Travelers</label>
+      <input type="number" id="cTravelers" value="2" min="1">
+    </div>
+    <button class="btn" onclick="calcCustomTrip()">Calculate Estimate</button>
+    <div id="customResult" style="margin-top:1rem;"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Wanderlust Travels Agency. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

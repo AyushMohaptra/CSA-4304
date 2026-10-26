@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrafficSquad E-Challan Portal | Traffic Police e-Challan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Traffic Police e-Challan</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Search Challan</a>
+    <a href="police.html">Officer FIR Entry</a>
+    <a href="rules.html">Traffic Penalties</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #1e3a8a, #1e293b);">
+    <h1>Traffic Police e-Challan & FIR System</h1>
+    <p>Citizen portal for instantaneous vehicle penalty enquiry, proof photo verification & online fine payment.</p>
+  </div>
+  <div class="card" style="max-width:550px;">
+    <h3>Search Pending Challans</h3>
+    <div class="form-group">
+      <label>Vehicle Registration Number</label>
+      <input type="text" id="chkReg" placeholder="e.g. TN 01 AB 1234">
+    </div>
+    <button class="btn" onclick="searchChallan()">Check Violations</button>
+    <div id="challanSearchResult" style="margin-top:1rem;"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 TrafficSquad E-Challan Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeFlow Blood Bank | Blood Bank Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Blood Bank Management System</a>
+  <div class="nav-links">
+    <a href="index.html">Inventory & Donors</a>
+    <a href="donor.html" class="active">Register as Donor</a>
+    <a href="request.html">Emergency Blood Request</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Voluntary Donor Registration</h2>
+  <div class="card" style="max-width:550px;">
+    <form onsubmit="registerDonor(event)">
+      <div class="form-group">
+        <label>Donor Full Name</label>
+        <input type="text" id="dnName" required placeholder="Arvind Swamy">
+      </div>
+      <div class="form-group">
+        <label>Blood Group</label>
+        <select id="dnGroup">
+          <option>O +ve</option><option>O -ve</option>
+          <option>A +ve</option><option>A -ve</option>
+          <option>B +ve</option><option>B -ve</option>
+          <option>AB +ve</option><option>AB -ve</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Age & Weight</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="number" id="dnAge" min="18" max="65" placeholder="Age" required>
+          <input type="number" id="dnWeight" min="45" placeholder="Weight (kg)" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>City / Location</label>
+        <input type="text" id="dnCity" required placeholder="Chennai">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="dnPhone" required placeholder="9876543210">
+      </div>
+      <button type="submit" class="btn">Register as Active Donor</button>
+    </form>
+    <div id="donorAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 LifeFlow Blood Bank. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

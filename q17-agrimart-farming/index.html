@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriMart Agricultural Supplies | AgriMart</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cat-pill {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .controls-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem;
+      background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    @media (max-width: 850px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">AgriMart Farming</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Seeds & Equipment</a>
+    <a href="cart.html">Agri Cart</a>
+    <a href="advisory.html">Vet Advisory</a>
+    <a href="orders.html">Orders & Dispatches</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #15803d, #22c55e);">
+    <h1>AgriMart Farmer Support & Store</h1>
+    <p>High-yield hybrid seeds, certified organic fertilizers, solar equipment, and pest management tools.</p>
+  </div>
+
+  <!-- Category Pills -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Agricultural Categories</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="cat-pill active" onclick="selectAgriPill('all')">All Supplies</button>
+      <button class="cat-pill" onclick="selectAgriPill('Seeds')">🌾 Hybrid Seeds (Popular)</button>
+      <button class="cat-pill" onclick="selectAgriPill('Fertilizers')">🌱 Bio Fertilizers</button>
+      <button class="cat-pill" onclick="selectAgriPill('Pesticides')">🛡️ Crop Protection</button>
+      <button class="cat-pill" onclick="selectAgriPill('Equipment')">🚜 Farm Sprayers & Tools</button>
+    </div>
+  </div>
+
+  <!-- Search, Category & Sorting Controls -->
+  <div class="controls-grid">
+    <div>
+      <input type="text" id="agriSearch" placeholder="Search seeds, fertilizers, equipment..." oninput="filterAndSortAgri()" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div>
+      <select id="agriCategory" onchange="filterAndSortAgri()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Categories</option>
+        <option value="Seeds">Hybrid Seeds</option>
+        <option value="Fertilizers">Fertilizers</option>
+        <option value="Pesticides">Pesticides</option>
+        <option value="Equipment">Farm Equipment</option>
+      </select>
+    </div>
+    <div>
+      <select id="agriSort" onchange="filterAndSortAgri()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="rating">Sort: Highest Farmer Rating</option>
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Agri Grid -->
+  <div class="card-grid" id="agriGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 AgriMart Farming Supplies. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
