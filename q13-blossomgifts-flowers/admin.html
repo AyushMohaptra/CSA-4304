@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Inventory & Customer Desk | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Order</a>
+    <a href="admin.html" class="active">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Administrator Control Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Manage store particulars, prices, remove items, and view customers who checkout.</p>
+
+  <!-- Add New Particulars Form -->
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Add New Item / Particular to Catalog</h3>
+    <form onsubmit="adminAddItem(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Item Name / Particular</label>
+        <input type="text" id="addItemName" required placeholder="Ex: Dutch Tulips Bouquet">
+      </div>
+            <div class="form-group" style="margin:0;">
+        <label>Subcategory</label>
+        <input type="text" id="addItemSubcat" placeholder="Ex: Roses / Hampers">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Category</label>
+        <select id="addItemCat">
+          <option>Flowers</option>
+          <option>Combos</option>
+          <option>Personalized</option>
+          <option>Gift Baskets</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Unit Price (₹)</label>
+        <input type="number" id="addItemPrice" required placeholder="1499">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">+ Add Item</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Manage Inventory Table -->
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Live Inventory Management (Modify Price / Remove Item)</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Modify Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminInventoryBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Checkout Customers Log -->
+  <div class="card">
+    <h3>Information of Customers Who Checked Out</h3>
+    <p style="font-size:0.85rem; color:#64748b; margin-bottom:1rem;">Real-time feed of completed customer checkout transactions.</p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Contact</th>
+            <th>Delivery Address</th>
+            <th>Purchased Items</th>
+            <th>Total Paid</th>
+            <th>Delivery Date / Slot</th>
+          </tr>
+        </thead>
+        <tbody id="adminCustomersBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

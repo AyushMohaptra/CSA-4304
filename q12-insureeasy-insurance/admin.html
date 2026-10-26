@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Underwriting & Claims Admin | InsureEasy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">InsureEasy</a>
+  <div class="nav-links">
+    <a href="index.html">Coverage Plans</a>
+    <a href="quote.html">Premium Calculator</a>
+    <a href="claim.html">File Claim</a>
+    <a href="admin.html" class="active">Claims Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Insurance Administrator Control Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Review filed policyholder claims and manage underwriting policy plans.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Pending & Filed Policy Claims Review</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Claim ID</th>
+            <th>Policy Number</th>
+            <th>Type</th>
+            <th>Claim Amount</th>
+            <th>Incident Details</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminClaimsBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Add / Update Policy Coverage Plan</h3>
+    <form onsubmit="adminAddPolicy(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Policy Name</label>
+        <input type="text" id="polName" required placeholder="Ex: Critical Illness Shield">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Category</label>
+        <select id="polCat">
+          <option value="Health">Health Insurance</option>
+          <option value="Auto">Motor & Vehicle</option>
+          <option value="Life">Term Life</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Base Premium Rate (%)</label>
+        <input type="number" step="0.001" id="polRate" required placeholder="0.012">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">Save Policy Plan</button>
+      </div>
+    </form>
+    <div id="polAlert"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 InsureEasy Portal. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

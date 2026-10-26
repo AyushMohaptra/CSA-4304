@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyToll FASTag Portal | EasyToll Payment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">EasyToll</a>
+  <div class="nav-links">
+    <a href="index.html">Plaza & FASTag</a>
+    <a href="pay.html">Recharge Wallet</a>
+    <a href="history.html">Pass & Toll Ledger</a>
+    <a href="admin.html">Plaza Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #1e3a8a, #0284c7);">
+    <h1>EasyToll National Toll System</h1>
+    <p>Seamless automated toll payment, FASTag digital wallet recharge & plaza rate transparency.</p>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="badge-tag">FASTAG WALLET</span>
+      <h3 style="margin-top:0.5rem;">Current Balance: <span id="walletBal" style="color:var(--success);">₹850.00</span></h3>
+      <p>Linked Vehicle: <strong>TN 09 AB 4521</strong> (Car / Jeep / Van)</p>
+      <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+        <input type="number" id="rechAmt" placeholder="Recharge Amount (₹)" style="max-width:180px;">
+        <button class="btn btn-sm" onclick="rechargeWallet()">Add Money</button>
+      </div>
+    </div>
+    <div class="card">
+      <span class="badge-tag">ACTIVE PASS</span>
+      <h3 style="margin-top:0.5rem;">NH-45 Chengalpattu Plaza</h3>
+      <p>Monthly Local Pass: Valid until end of month.</p>
+      <a href="pay.html" class="btn btn-sm">Calculate & Pay Toll</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 EasyToll FASTag Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

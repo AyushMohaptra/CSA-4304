@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsureEasy Insurance | InsureEasy Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">InsureEasy</a>
+  <div class="nav-links">
+    <a href="index.html">Coverage Plans</a>
+    <a href="quote.html">Premium Calculator</a>
+    <a href="claim.html">File Claim</a>
+    <a href="admin.html">Claims Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Instant Online Claim Intimation</h2>
+  <div class="card" style="max-width:550px;">
+    <form onsubmit="submitClaim(event)">
+      <div class="form-group">
+        <label>Policy Number</label>
+        <input type="text" id="clmPolicy" required placeholder="POL-849201">
+      </div>
+      <div class="form-group">
+        <label>Policyholder Name</label>
+        <input type="text" id="clmName" required placeholder="Robert Smith">
+      </div>
+      <div class="form-group">
+        <label>Claim Nature</label>
+        <select id="clmType">
+          <option>Hospitalization Reimbursement</option>
+          <option>Vehicle Accident Repair</option>
+          <option>Critical Illness Settlement</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Claim Amount (₹)</label>
+        <input type="number" id="clmAmt" required placeholder="45000">
+      </div>
+      <button type="submit" class="btn">Register Claim Ticket</button>
+    </form>
+    <div id="claimAlert"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 InsureEasy Insurance. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

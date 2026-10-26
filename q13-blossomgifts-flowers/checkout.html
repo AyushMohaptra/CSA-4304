@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Checkout | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html" class="active">Checkout</a>
+    <a href="orders.html">Track Order</a>
+    <a href="admin.html">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Customer Checkout & Delivery Details</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem; margin-top:1.5rem;">
+    <div class="card">
+      <h3>Recipient & Shipping Information</h3>
+      <form onsubmit="submitCheckout(event)" style="margin-top:1rem;">
+        <div class="form-group">
+          <label>Recipient / Customer Name</label>
+          <input type="text" id="custName" required placeholder="Ananya Sharma">
+        </div>
+        <div class="form-group">
+          <label>Email Address (For Confirmation)</label>
+          <input type="email" id="custEmail" required placeholder="ananya@example.com">
+        </div>
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" id="custPhone" required placeholder="9876543210">
+        </div>
+        <div class="form-group">
+          <label>Complete Delivery Address</label>
+          <textarea id="custAddress" rows="3" style="width:100%; padding:0.5rem; border:1px solid #cbd5e1; border-radius:6px;" required placeholder="Apt 4B, Lotus Heights, MG Road, Bengaluru"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Gifting Occasion</label>
+          <select id="custOccasion">
+            <option>Birthday</option>
+            <option>Anniversary</option>
+            <option>Congratulations</option>
+            <option>Get Well Soon</option>
+            <option>Valentine Special</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div class="form-group">
+            <label>Delivery Date</label>
+            <input type="date" id="custDate" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Time Slot</label>
+            <select id="custSlot">
+              <option>Morning (09:00 AM - 12:00 PM)</option>
+              <option>Afternoon (01:00 PM - 04:00 PM)</option>
+              <option>Evening (05:00 PM - 08:00 PM)</option>
+              <option>Midnight Surprise (11:30 PM - 12:00 AM)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select id="custPayment">
+            <option>UPI / Google Pay / PhonePe</option>
+            <option>Credit / Debit Card</option>
+            <option>Net Banking</option>
+            <option>Cash on Delivery</option>
+          </select>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Complete Purchase & Checkout</button>
+      </form>
+      <div id="checkoutAlert"></div>
+    </div>
+
+    <div class="card">
+      <h3>Order Summary</h3>
+      <div id="checkoutSummary" style="margin-top:1rem;"></div>
+      <div style="background:#f8fafc; border-radius:8px; padding:1rem; margin-top:1rem; border:1px solid #e2e8f0;">
+        <p style="font-size:0.9rem;"><strong>Guaranteed Freshness:</strong> Flowers hand-arranged by expert florists within 2 hours of dispatch.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

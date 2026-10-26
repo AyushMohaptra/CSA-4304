@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog & Customer Admin | StyleHub Fashion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">StyleHub Fashion</a>
+  <div class="nav-links">
+    <a href="index.html">Collections</a>
+    <a href="cart.html">Shopping Bag</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Logistics</a>
+    <a href="admin.html" class="active">Catalog Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>StyleHub Fashion Inventory & Customer Admin</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Add new particulars, modify prices, remove items, and view customers who checkout.</p>
+
+  <!-- Add Particulars -->
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Add New Apparel Particular</h3>
+    <form onsubmit="addFashionItem(event)" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Apparel Item Name</label>
+        <input type="text" id="fName" required placeholder="Ex: Tailored Blazer">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Category</label>
+        <select id="fCat">
+          <option value="men">Men's Apparel</option>
+          <option value="women">Women's Collection</option>
+          <option value="footwear">Footwear & Accessories</option>
+          <option value="kids">Kids Wear</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Price (₹)</label>
+        <input type="number" id="fPrice" required placeholder="2499">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">+ Add Item</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Live Inventory Table -->
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Live Apparel Catalog (Modify Price / Remove Item)</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Item #</th>
+            <th>Apparel Name</th>
+            <th>Department</th>
+            <th>Modify Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="fashionAdminBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Checkout Customers -->
+  <div class="card">
+    <h3>Information of Customers Who Checked Out</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Contact</th>
+            <th>Shipping Address</th>
+            <th>Items & Sizes</th>
+            <th>Total Paid</th>
+          </tr>
+        </thead>
+        <tbody id="stylehubCustomersBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 StyleHub Fashion Retailer. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

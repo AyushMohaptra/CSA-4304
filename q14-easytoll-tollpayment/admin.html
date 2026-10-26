@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toll Plaza Rates & Pass Admin | EasyToll</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">EasyToll</a>
+  <div class="nav-links">
+    <a href="index.html">Plaza & FASTag</a>
+    <a href="pay.html">Recharge Wallet</a>
+    <a href="history.html">Pass & Toll Ledger</a>
+    <a href="admin.html" class="active">Plaza Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Toll Authority Administration Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Configure plaza tariff rates per vehicle classification and audit FASTag deductions.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>National Highway Toll Plaza Tariff Matrix</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Toll Plaza</th>
+            <th>Car / Jeep (₹)</th>
+            <th>LCV / Minibus (₹)</th>
+            <th>Bus / 2-Axle Truck (₹)</th>
+            <th>Modify Tariff</th>
+          </tr>
+        </thead>
+        <tbody id="tollPlazaTable">
+          <tr>
+            <td><strong>Paranur Toll Plaza (NH 45)</strong></td>
+            <td><input type="number" id="rate-car-1" value="85" style="width:70px;"></td>
+            <td><input type="number" id="rate-lcv-1" value="140" style="width:70px;"></td>
+            <td><input type="number" id="rate-bus-1" value="290" style="width:70px;"></td>
+            <td><button class="btn btn-sm" onclick="alert('Paranur tariff rates updated across RFID sensors.')">Update</button></td>
+          </tr>
+          <tr>
+            <td><strong>Athur Toll Plaza (NH 45)</strong></td>
+            <td><input type="number" id="rate-car-2" value="85" style="width:70px;"></td>
+            <td><input type="number" id="rate-lcv-2" value="135" style="width:70px;"></td>
+            <td><input type="number" id="rate-bus-2" value="280" style="width:70px;"></td>
+            <td><button class="btn btn-sm" onclick="alert('Athur tariff rates updated across RFID sensors.')">Update</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Issue Special Monthly Commercial Pass</h3>
+    <form onsubmit="adminIssuePass(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Vehicle Registration #</label>
+        <input type="text" id="passVehNo" required placeholder="TN 09 CA 8821">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Pass Duration</label>
+        <select id="passDuration">
+          <option value="30">Monthly Local Pass (₹330)</option>
+          <option value="90">Quarterly Pass (₹950)</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">Issue FASTag Pass</button>
+      </div>
+    </form>
+    <div id="passAlert"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 EasyToll FASTag Management. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+function adminIssuePass(e) {
+  e.preventDefault();
+  const v = document.getElementById('passVehNo').value.trim().toUpperCase();
+  const d = document.getElementById('passDuration').value;
+  document.getElementById('passAlert').innerHTML = `
+    <div class="card" style="margin-top:1rem; background:#ecfdf5; color:#065f46;">
+      Special ${d}-day pass issued for vehicle <strong>${v}</strong>. RFID tag whitelisted.
+    </div>
+  `;
+  e.target.reset();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlossomGifts Floral Boutique | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Order</a>
+    <a href="admin.html">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Personalized Greeting Card & Delivery</h2>
+  <div class="card" style="max-width:550px;">
+    <div class="form-group">
+      <label>Recipient Name</label>
+      <input type="text" id="recName" placeholder="Emily Watson">
+    </div>
+    <div class="form-group">
+      <label>Occasion</label>
+      <select id="occType">
+        <option>Birthday Celebration</option>
+        <option>Anniversary Wishes</option>
+        <option>Congratulations</option>
+        <option>Get Well Soon</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Custom Gift Card Message</label>
+      <textarea id="cardMsg" rows="3" placeholder="Wishing you endless joy and happiness on your special day!"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Preferred Delivery Date</label>
+      <input type="date" id="delDate">
+    </div>
+    <button class="btn" onclick="confirmGiftOrder()">Confirm & Send Gift</button>
+    <div id="giftConfirmation"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

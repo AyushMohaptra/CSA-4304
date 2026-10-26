@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleHub Fashion | StyleHub Fashion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">StyleHub Fashion</a>
+  <div class="nav-links">
+    <a href="index.html">Collections</a>
+    <a href="cart.html">Shopping Bag</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Logistics</a>
+    <a href="admin.html">Catalog Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Your Shopping Bag</h2>
+  <table id="fashionCartTable">
+    <thead>
+      <tr><th>Outfit</th><th>Size</th><th>Price</th><th>Qty</th><th>Subtotal</th><th>Action</th></tr>
+    </thead>
+    <tbody id="fashionCartBody"></tbody>
+  </table>
+  <div class="card" style="margin-top:1.5rem; max-width:350px; margin-left:auto;">
+    <h3>Bag Summary</h3>
+    <p>Total Payable: <strong id="fashionGrandTotal" style="color:var(--primary); font-size:1.2rem;">₹0</strong></p>
+    <button class="btn" style="width:100%; margin-top:0.5rem;" onclick="window.location.href='checkout.html'">Complete Order</button>
+  </div>
+  <div id="fashionOrderReceipt"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 StyleHub Fashion. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

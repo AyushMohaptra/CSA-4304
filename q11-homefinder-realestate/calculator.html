@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeFinder Real Estate | Home Finder Real Estate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Home Finder Real Estate</a>
+  <div class="nav-links">
+    <a href="index.html">Properties</a>
+    <a href="calculator.html" class="active">EMI Calculator</a>
+    <a href="visit.html">Schedule Visit</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Mortgage & Loan EMI Calculator</h2>
+  <div class="card" style="max-width:500px;">
+    <div class="form-group">
+      <label>Loan Amount (₹)</label>
+      <input type="number" id="loanAmt" value="5000000">
+    </div>
+    <div class="form-group">
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" id="loanRate" value="8.5" step="0.1">
+    </div>
+    <div class="form-group">
+      <label>Loan Tenure (Years)</label>
+      <input type="number" id="loanTenure" value="20">
+    </div>
+    <button class="btn" onclick="calcEMI()">Calculate Monthly EMI</button>
+    <div id="emiResult" style="margin-top:1rem;"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 HomeFinder Real Estate. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

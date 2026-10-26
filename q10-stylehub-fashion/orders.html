@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order Logistics | StyleHub Fashion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">StyleHub Fashion</a>
+  <div class="nav-links">
+    <a href="index.html">Collections</a>
+    <a href="cart.html">Shopping Bag</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html" class="active">Track Logistics</a>
+    <a href="admin.html">Catalog Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Track Order Logistics Status</h2>
+  <div class="card" style="max-width:550px; margin-top:1.5rem;">
+    <div class="form-group">
+      <label>Enter Order ID</label>
+      <div style="display:flex; gap:0.5rem;">
+        <input type="text" id="trackOrderId" placeholder="Ex: SH-12345" style="text-transform:uppercase;">
+        <button class="btn" onclick="trackFashionOrder()">Track</button>
+      </div>
+    </div>
+    <div id="trackingResult"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 StyleHub Fashion Retailer. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const idParam = params.get('id');
+  if (idParam) {
+    document.getElementById('trackOrderId').value = idParam;
+    trackFashionOrder();
+  }
+</script>
+</body>
+</html>

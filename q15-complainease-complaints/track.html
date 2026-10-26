@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComplainEase Grievance Redressal | ComplainEase Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">ComplainEase Portal</a>
+  <div class="nav-links">
+    <a href="index.html">Lodge Grievance</a>
+    <a href="track.html" class="active">Track Status</a>
+    <a href="admin.html">Admin Resolution</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Track Complaint Status</h2>
+  <div class="card" style="max-width:500px;">
+    <div class="form-group">
+      <label>Enter Complaint Ticket ID</label>
+      <input type="text" id="trackId" placeholder="e.g. GRV-1024">
+    </div>
+    <button class="btn" onclick="checkStatus()">Search Status</button>
+    <div id="trackResult" style="margin-top:1rem;"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 ComplainEase Grievance Redressal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

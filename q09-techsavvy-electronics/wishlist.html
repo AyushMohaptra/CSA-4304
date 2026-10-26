@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Save items to your wishlist and receive restock notifications</div>
+    <div><a href="products.html">&larr; Return to Shopping</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link active">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <div class="section-header">
+      <h1 class="section-title">Saved Wishlist Items</h1>
+      <span id="wishlist-count-text" style="font-size: 13px; color: var(--gray-600); font-weight:600;"></span>
+    </div>
+
+    <!-- Wishlist Products Grid -->
+    <div class="product-grid" id="wishlist-grid">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="wishlist-empty" style="display:none; text-align:center; padding:40px 20px; background:#fff; border-radius:6px; border:1px solid var(--border);">
+      <h2 style="font-size:18px; margin-bottom:8px;">Your Wishlist is Empty</h2>
+      <p style="color:var(--gray-600); font-size:13px; margin-bottom:16px;">Save the electronics you like by clicking the Save button on any gadget card.</p>
+      <a href="products.html" class="btn btn-primary btn-sm">Browse Catalog &rarr;</a>
+    </div>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function renderWishlistPage() {
+      const wishlistIds = Storage.getWishlist();
+      const allProducts = Storage.getProducts();
+      const wishlistProducts = allProducts.filter(p => wishlistIds.includes(p.id));
+
+      const grid = document.getElementById("wishlist-grid");
+      const emptyMsg = document.getElementById("wishlist-empty");
+      const countText = document.getElementById("wishlist-count-text");
+
+      countText.textContent = `${wishlistProducts.length} saved item${wishlistProducts.length === 1 ? '' : 's'}`;
+
+      if (wishlistProducts.length === 0) {
+        grid.innerHTML = "";
+        emptyMsg.style.display = "block";
+        return;
+      }
+
+      emptyMsg.style.display = "none";
+      grid.innerHTML = wishlistProducts.map(p => App.renderProductCard(p)).join("");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderWishlistPage();
+    });
+  </script>
+</body>
+</html>

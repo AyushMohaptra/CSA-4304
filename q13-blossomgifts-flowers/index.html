@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlossomGifts Floral Boutique | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cat-pill {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .controls-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 0.75rem;
+      background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    @media (max-width: 850px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Order</a>
+    <a href="admin.html">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #be185d, #f43f5e);">
+    <h1>BlossomGifts Fresh Blooms & Surprises</h1>
+    <p>Hand-crafted floral arrangements, delicious cake hampers & personalized surprises for every celebration.</p>
+  </div>
+
+  <!-- Popular Categories Listed First -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Popular Categories</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="cat-pill active" onclick="selectCategoryPill('all')">🌸 All Categories</button>
+      <button class="cat-pill" onclick="selectCategoryPill('Flowers')">🌹 Fresh Flowers (Popular)</button>
+      <button class="cat-pill" onclick="selectCategoryPill('Combos')">🎁 Gift Combos & Cakes</button>
+      <button class="cat-pill" onclick="selectCategoryPill('Personalized')">✨ Personalized Keepsakes</button>
+      <button class="cat-pill" onclick="selectCategoryPill('Plants')">🌿 Indoor Plants</button>
+    </div>
+  </div>
+
+  <!-- Search, Subcategory, Stock & Sorting Controls -->
+  <div class="controls-grid">
+    <div>
+      <input type="text" id="giftSearch" placeholder="Search gifts by name or keyword..." oninput="filterAndSortGifts()" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div>
+      <select id="giftCategory" onchange="onCategoryChange()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Categories</option>
+        <option value="Flowers">Flowers</option>
+        <option value="Combos">Combos</option>
+        <option value="Personalized">Personalized</option>
+        <option value="Plants">Plants</option>
+      </select>
+    </div>
+    <div>
+      <select id="giftSubcategory" onchange="filterAndSortGifts()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Subcategories</option>
+      </select>
+    </div>
+    <div>
+      <select id="giftStock" onchange="filterAndSortGifts()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">Stock: All</option>
+        <option value="instock">In Stock Only</option>
+      </select>
+    </div>
+    <div>
+      <select id="giftSort" onchange="filterAndSortGifts()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="popular">Sort: Most Popular</option>
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Dynamic Catalog Grid -->
+  <div class="card-grid" id="giftGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

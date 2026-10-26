@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeFinder Real Estate | Home Finder Real Estate</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cat-pill {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .controls-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem;
+      background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    @media (max-width: 850px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">Home Finder Real Estate</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Properties</a>
+    <a href="calculator.html">EMI Calculator</a>
+    <a href="visit.html">Schedule Visit</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #1e3a8a, #0369a1);">
+    <h1>Verified Homes, Luxury Villas & Commercial Spaces</h1>
+    <p>Browse verified property listings across top residential neighborhoods with RERA approvals and instant home loan calculation.</p>
+  </div>
+
+  <!-- Category Pills -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Property Types</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="cat-pill active" onclick="selectPropPill('all')">All Properties</button>
+      <button class="cat-pill" onclick="selectPropPill('Apartments')">🏢 Gated Apartments (Popular)</button>
+      <button class="cat-pill" onclick="selectPropPill('Villas')">🏡 Luxury Villas</button>
+      <button class="cat-pill" onclick="selectPropPill('Commercial')">🏢 Commercial Offices</button>
+      <button class="cat-pill" onclick="selectPropPill('Plots')">📐 CMDA Approved Plots</button>
+    </div>
+  </div>
+
+  <!-- Search, Category & Sorting Controls -->
+  <div class="controls-grid">
+    <div>
+      <input type="text" id="propSearch" placeholder="Search by locality, project name, or type..." oninput="filterAndSortProperties()" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div>
+      <select id="propCategory" onchange="filterAndSortProperties()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Property Categories</option>
+        <option value="Apartments">Apartments</option>
+        <option value="Villas">Villas</option>
+        <option value="Commercial">Commercial</option>
+        <option value="Plots">Plots</option>
+      </select>
+    </div>
+    <div>
+      <select id="propSort" onchange="filterAndSortProperties()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="title">Project Name: A to Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Property Grid -->
+  <div class="card-grid" id="propGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 HomeFinder Real Estate. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

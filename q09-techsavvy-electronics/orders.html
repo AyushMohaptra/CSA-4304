@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History & Status | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Status Stepper */
+    .status-stepper {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 16px 0;
+    }
+    .status-stepper::before {
+      content: "";
+      position: absolute;
+      top: 13px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: var(--border);
+      z-index: 1;
+    }
+    .step-item {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+    }
+    .step-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gray-300);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px auto;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .step-active .step-icon {
+      background: var(--primary);
+    }
+    .step-completed .step-icon {
+      background: var(--success);
+    }
+    .step-label {
+      font-size: 11px;
+      color: var(--gray-600);
+      font-weight: 600;
+    }
+    .step-active .step-label, .step-completed .step-label {
+      color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Live Courier Delivery Tracking & Invoice History</div>
+    <div><a href="products.html">&larr; Return to Shopping</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link active">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <div class="section-header">
+      <h1 class="section-title">Order History & Tracking</h1>
+      <span id="orders-count-badge" style="font-size: 13px; color: var(--gray-600); font-weight:600;"></span>
+    </div>
+
+    <!-- Quick Search By Order ID -->
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="search-input-wrap">
+          <input type="text" id="order-search-input" class="input-text" placeholder="Lookup Order ID (e.g. TS-89421) or Customer Name..." oninput="filterOrders()">
+        </div>
+        <select id="status-filter" class="filter-select" onchange="filterOrders()">
+          <option value="all">All Statuses</option>
+          <option value="Processing">Processing</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="resetOrderFilter()">Reset Filter</button>
+      </div>
+    </div>
+
+    <!-- Orders List Container -->
+    <div id="orders-list-container">
+      <!-- Injected via JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-orders-msg" style="display:none; text-align:center; padding:40px; background:#fff; border-radius:6px; border:1px solid var(--border);">
+      <h3 style="margin-bottom:8px;">No Orders Found</h3>
+      <p style="color:var(--gray-600); font-size:13px; margin-bottom:16px;">You haven't placed any electronic gadget orders yet.</p>
+      <a href="products.html" class="btn btn-primary btn-sm">Start Shopping &rarr;</a>
+    </div>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function getStatusBadge(status) {
+      if (status === "Delivered") {
+        return `<span class="badge badge-success">Delivered</span>`;
+      } else if (status === "Shipped") {
+        return `<span class="badge badge-info">Shipped</span>`;
+      } else if (status === "Processing") {
+        return `<span class="badge badge-warning">Processing</span>`;
+      } else {
+        return `<span class="badge badge-danger">${status}</span>`;
+      }
+    }
+
+    function renderStepper(status) {
+      const isProcessing = status === "Processing" || status === "Shipped" || status === "Delivered";
+      const isShipped = status === "Shipped" || status === "Delivered";
+      const isDelivered = status === "Delivered";
+
+      return `
+        <div class="status-stepper">
+          <div class="step-item ${isProcessing ? (isShipped ? 'step-completed' : 'step-active') : ''}">
+            <div class="step-icon">1</div>
+            <div class="step-label">Order Placed & Processing</div>
+          </div>
+          <div class="step-item ${isShipped ? (isDelivered ? 'step-completed' : 'step-active') : ''}">
+            <div class="step-icon">2</div>
+            <div class="step-label">Dispatched & Shipped</div>
+          </div>
+          <div class="step-item ${isDelivered ? 'step-completed' : ''}">
+            <div class="step-icon">3</div>
+            <div class="step-label">Delivered to Customer</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderOrders(ordersToRender) {
+      const container = document.getElementById("orders-list-container");
+      const emptyMsg = document.getElementById("empty-orders-msg");
+      const countBadge = document.getElementById("orders-count-badge");
+
+      countBadge.textContent = `${ordersToRender.length} recorded order${ordersToRender.length === 1 ? '' : 's'}`;
+
+      if (ordersToRender.length === 0) {
+        container.innerHTML = "";
+        emptyMsg.style.display = "block";
+        return;
+      }
+
+      emptyMsg.style.display = "none";
+
+      container.innerHTML = ordersToRender.map(order => {
+        const itemsListHtml = (order.items || []).map(i => `
+          <li style="margin-bottom: 4px; display:flex; justify-content:space-between;">
+            <span><strong>${i.name}</strong> × ${i.quantity}</span>
+            <span>${Storage.formatCurrency(i.price * i.quantity)}</span>
+          </li>
+        `).join("");
+
+        return `
+          <div style="background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; margin-bottom:16px; box-shadow:var(--shadow-sm);">
+            
+            <!-- Order Header -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); padding-bottom:10px; margin-bottom:12px; gap:8px;">
+              <div>
+                <span style="font-size:15px; font-weight:700; color:var(--primary);">Order ID: ${order.orderId}</span>
+                <span style="font-size:12px; color:var(--gray-600); margin-left:10px;">Date: ${order.date}</span>
+              </div>
+              <div>
+                ${getStatusBadge(order.status)}
+              </div>
+            </div>
+
+            <!-- Progress Tracker (Use Case 9) -->
+            ${renderStepper(order.status)}
+
+            <!-- Order Details Grid -->
+            <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:16px; margin-top:14px; background:var(--gray-50); border:1px solid var(--border); border-radius:6px; padding:12px;">
+              <div>
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--gray-600); margin-bottom:6px;">Items Purchased:</div>
+                <ul style="list-style:none; font-size:12px;">
+                  ${itemsListHtml}
+                </ul>
+                <div style="border-top:1px dashed var(--gray-300); margin-top:8px; padding-top:6px; font-weight:700; font-size:13px; display:flex; justify-content:space-between;">
+                  <span>Total Amount Paid:</span>
+                  <span style="color:var(--primary);">${Storage.formatCurrency(order.totalAmount)}</span>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--gray-600); margin-bottom:6px;">Shipping & Customer Info:</div>
+                <div style="font-size:12px; line-height:1.5; color:var(--gray-800);">
+                  <div>Customer: <strong>${order.customer?.name || 'Customer'}</strong></div>
+                  <div>Phone: ${order.customer?.phone || 'N/A'}</div>
+                  <div>Email: ${order.customer?.email || 'N/A'}</div>
+                  <div>Address: ${order.customer?.address || 'N/A'}</div>
+                  <div style="margin-top:4px;">Payment: <em>${order.customer?.paymentMethod || 'Prepaid'}</em></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join("");
+    }
+
+    function filterOrders() {
+      const q = document.getElementById("order-search-input").value.trim().toLowerCase();
+      const statusFilter = document.getElementById("status-filter").value;
+      const allOrders = Storage.getOrders();
+
+      const filtered = allOrders.filter(order => {
+        const idMatch = order.orderId.toLowerCase().includes(q);
+        const nameMatch = (order.customer?.name || "").toLowerCase().includes(q);
+        const statusMatch = statusFilter === "all" || order.status === statusFilter;
+        return (idMatch || nameMatch) && statusMatch;
+      });
+
+      renderOrders(filtered);
+    }
+
+    function resetOrderFilter() {
+      document.getElementById("order-search-input").value = "";
+      document.getElementById("status-filter").value = "all";
+      renderOrders(Storage.getOrders());
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderOrders(Storage.getOrders());
+    });
+  </script>
+</body>
+</html>

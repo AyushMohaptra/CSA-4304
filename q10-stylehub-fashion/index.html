@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StyleHub Fashion Retailer | StyleHub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cat-pill {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 16px; border-radius: 20px;
+      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary); color: white; border-color: var(--primary);
+    }
+    .controls-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 0.75rem;
+      background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;
+      margin-bottom: 1.5rem; align-items: center;
+    }
+    @media (max-width: 850px) {
+      .controls-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">StyleHub Fashion</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Collections</a>
+    <a href="cart.html">Shopping Bag</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Logistics</a>
+    <a href="admin.html">Catalog Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #1e3a8a, #7c3aed);">
+    <h1>StyleHub Seasonal Fashion Collections</h1>
+    <p>Contemporary menswear, chic dresses, artisan footwear & kids essentials tailored for modern trends.</p>
+  </div>
+
+  <!-- Popular Categories Listed First -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">Popular Categories</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button class="cat-pill active" onclick="selectFashionPill('all')">All Collections</button>
+      <button class="cat-pill" onclick="selectFashionPill('men')">👔 Men's Apparel (Popular)</button>
+      <button class="cat-pill" onclick="selectFashionPill('women')">👗 Women's Fashion (Popular)</button>
+      <button class="cat-pill" onclick="selectFashionPill('footwear')">👞 Footwear & Loafers</button>
+      <button class="cat-pill" onclick="selectFashionPill('kids')">🧒 Kids Collection</button>
+    </div>
+  </div>
+
+  <!-- Search, Subcategory & Sorting Controls -->
+  <div class="controls-grid">
+    <div>
+      <input type="text" id="fashionSearch" placeholder="Search apparel by name, style, or fabric..." oninput="filterAndSortFashion()" style="width:100%; padding:8px 12px; border:1px solid #cbd5e1; border-radius:6px;">
+    </div>
+    <div>
+      <select id="fashionCategory" onchange="onFashionCategoryChange()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Departments</option>
+        <option value="men">Men's Wear</option>
+        <option value="women">Women's Fashion</option>
+        <option value="footwear">Footwear</option>
+        <option value="kids">Kids Wear</option>
+      </select>
+    </div>
+    <div>
+      <select id="fashionSubcategory" onchange="filterAndSortFashion()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="all">All Subcategories</option>
+      </select>
+    </div>
+    <div>
+      <select id="fashionSort" onchange="filterAndSortFashion()" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px;">
+        <option value="popular">Sort: Most Popular</option>
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Dynamic Catalog Grid -->
+  <div class="card-grid" id="fashionGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 StyleHub Fashion Retailer. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

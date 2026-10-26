@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Official 1-Year Manufacturer Warranty on all Gadgets & Accessories</div>
+    <div><a href="products.html">&larr; Back to Products</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <!-- Breadcrumb -->
+    <div style="font-size:13px; margin-bottom:16px; color:var(--gray-600);">
+      <a href="index.html" style="color:var(--primary); text-decoration:none;">Home</a> &gt; 
+      <a href="products.html" style="color:var(--primary); text-decoration:none;">Products</a> &gt; 
+      <span id="breadcrumb-category">Category</span> &gt; 
+      <span id="breadcrumb-title" style="font-weight:600; color:var(--dark);">Item Name</span>
+    </div>
+
+    <!-- Product Layout Container -->
+    <div id="product-container">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+      <div class="section-header">
+        <h2 class="section-title">Customer Reviews</h2>
+        <span id="reviews-header-count" style="font-size: 13px; color: var(--gray-600);"></span>
+      </div>
+
+      <div id="reviews-list">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Add Review Form -->
+      <div style="margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--gray-300);">
+        <h3 style="font-size: 15px; margin-bottom: 12px; font-weight:700;">Write a Customer Review</h3>
+        <form id="add-review-form" onsubmit="handleReviewSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Your Name</label>
+              <input type="text" id="review-author" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rating</label>
+              <select id="review-rating" class="form-control">
+                <option value="5">5 / 5 - Outstanding</option>
+                <option value="4" selected>4 / 5 - Very Good</option>
+                <option value="3">3 / 5 - Average</option>
+                <option value="2">2 / 5 - Below Average</option>
+                <option value="1">1 / 5 - Poor</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Review Feedback</label>
+            <textarea id="review-comment" class="form-control" rows="3" placeholder="Share your experience with battery life, build quality, screen..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Review</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Related Products</h2>
+      </div>
+      <div class="product-grid" id="related-products-grid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    let currentProduct = null;
+
+    function renderProduct() {
+      const productId = App.getQueryParam("id") || "sp-1";
+      currentProduct = Storage.getProductById(productId);
+
+      if (!currentProduct) {
+        document.getElementById("product-container").innerHTML = `
+          <div style="background:#fff; padding:30px; border-radius:6px; text-align:center; border:1px solid var(--border);">
+            <h2>Product Not Found</h2>
+            <p style="color:var(--gray-600); margin:8px 0 16px 0;">The requested electronic gadget does not exist or has been removed.</p>
+            <a href="products.html" class="btn btn-primary">Browse Catalog</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Update Breadcrumbs
+      document.getElementById("breadcrumb-category").textContent = currentProduct.category;
+      document.getElementById("breadcrumb-title").textContent = currentProduct.name;
+      document.title = `${currentProduct.name} | TechSavvy`;
+
+      const isAvailable = currentProduct.stock > 0;
+      const isWishlisted = App.isInWishlist(currentProduct.id);
+
+      // Build specs rows
+      let specsRows = "";
+      if (currentProduct.specs) {
+        for (const [key, val] of Object.entries(currentProduct.specs)) {
+          specsRows += `
+            <tr>
+              <td class="specs-key">${key}</td>
+              <td>${val}</td>
+            </tr>
+          `;
+        }
+      }
+
+      const discount = currentProduct.originalPrice 
+        ? Math.round(((currentProduct.originalPrice - currentProduct.price) / currentProduct.originalPrice) * 100) 
+        : 0;
+
+      const container = document.getElementById("product-container");
+      container.innerHTML = `
+        <div class="product-detail-layout">
+          <!-- Visual Column -->
+          <div class="detail-visual">
+            <span class="badge badge-info" style="margin-bottom:12px;">
+              ${currentProduct.badge || currentProduct.category}
+            </span>
+            <div class="detail-visual-category">${currentProduct.category}</div>
+            <div class="detail-visual-subcat">${currentProduct.subcategory || 'Standard Edition'}</div>
+            <div style="margin-top:20px; font-size:12px; color:var(--gray-600); border-top:1px solid var(--gray-200); padding-top:12px; width:100%;">
+              Catalog ID: <strong>${currentProduct.id.toUpperCase()}</strong>
+            </div>
+          </div>
+
+          <!-- Information & Purchase Column -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:10px;">
+              <h1 style="font-size: 22px; font-weight:700; margin-bottom: 6px;">${currentProduct.name}</h1>
+              <button class="btn-wishlist ${isWishlisted ? 'active' : ''}" 
+                      onclick="App.toggleWishlist('${currentProduct.id}'); this.classList.toggle('active'); this.textContent = App.isInWishlist('${currentProduct.id}') ? 'Saved' : 'Save to Wishlist';" 
+                      title="Save to Wishlist">${isWishlisted ? 'Saved' : 'Save to Wishlist'}</button>
+            </div>
+
+            <!-- Rating & Reviews count -->
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom: 14px;">
+              ${App.renderStars(currentProduct.rating || 4.5)}
+              <span style="font-size:12px; color:var(--gray-600);">${(currentProduct.reviews || []).length} Customer Reviews</span>
+            </div>
+
+            <!-- Price -->
+            <div style="margin-bottom: 14px; display:flex; align-items:baseline; gap:10px;">
+              <span style="font-size: 24px; font-weight: 700; color:var(--dark);">${Storage.formatCurrency(currentProduct.price)}</span>
+              ${currentProduct.originalPrice ? `
+                <span style="font-size: 14px; color:var(--gray-600); text-decoration:line-through;">
+                  ${Storage.formatCurrency(currentProduct.originalPrice)}
+                </span>
+                <span class="badge badge-success">${discount}% OFF</span>
+              ` : ''}
+            </div>
+
+            <!-- Stock Availability (Use Case 4) -->
+            <div style="margin-bottom: 16px; padding: 10px; background:var(--gray-50); border-radius:6px; border:1px solid var(--border);">
+              <span style="font-size:12px; font-weight:600; margin-right:8px;">Availability Status:</span>
+              ${App.renderStockBadge(currentProduct.stock)}
+              <span style="font-size:12px; color:var(--gray-600); margin-left:6px;">
+                ${isAvailable ? 'Item is ready to dispatch immediately.' : 'Currently waiting for factory restock.'}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <div style="margin-bottom: 18px;">
+              <h4 style="font-size:13px; font-weight:700; margin-bottom:4px;">Description:</h4>
+              <p style="font-size:13px; color:var(--gray-800); line-height:1.6;">${currentProduct.description}</p>
+            </div>
+
+            <!-- Quantity & Add to Cart (Use Case 5) -->
+            <div style="display:flex; align-items:center; gap:16px; margin-bottom: 24px; flex-wrap:wrap;">
+              <div>
+                <label class="form-label" style="margin-bottom:2px;">Quantity:</label>
+                <div class="qty-input-group">
+                  <button type="button" class="qty-btn" onclick="stepQty(-1)">-</button>
+                  <input type="number" id="detail-qty" class="qty-field" value="1" min="1" max="${currentProduct.stock}">
+                  <button type="button" class="qty-btn" onclick="stepQty(1)">+</button>
+                </div>
+              </div>
+
+              <div style="flex:1; min-width:200px;">
+                <label class="form-label" style="opacity:0; margin-bottom:2px;">Action:</label>
+                <button class="btn btn-primary btn-block btn-lg" 
+                        ${!isAvailable ? 'disabled' : ''} 
+                        onclick="handleAddDetailToCart()">
+                  ${isAvailable ? '+ Add to Cart' : 'Out of Stock'}
+                </button>
+              </div>
+            </div>
+
+            <!-- Technical Specifications Table (Use Case 11) -->
+            <div>
+              <h3 style="font-size:14px; font-weight:700; margin-bottom:8px;">Technical Specifications</h3>
+              <table class="specs-table">
+                <tbody>
+                  ${specsRows}
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      `;
+
+      renderReviews();
+      renderRelated();
+    }
+
+    function stepQty(delta) {
+      const input = document.getElementById("detail-qty");
+      if (!input || !currentProduct) return;
+      let val = parseInt(input.value) || 1;
+      val += delta;
+      if (val < 1) val = 1;
+      if (val > currentProduct.stock) val = currentProduct.stock;
+      input.value = val;
+    }
+
+    function handleAddDetailToCart() {
+      if (!currentProduct) return;
+      const input = document.getElementById("detail-qty");
+      const qty = parseInt(input.value) || 1;
+      App.addToCart(currentProduct.id, qty);
+    }
+
+    function renderReviews() {
+      const list = document.getElementById("reviews-list");
+      const reviews = currentProduct.reviews || [];
+      document.getElementById("reviews-header-count").textContent = `(${reviews.length} total reviews)`;
+
+      if (reviews.length === 0) {
+        list.innerHTML = `<p style="color:var(--gray-600); font-size:13px;">No customer reviews yet. Be the first to review this gadget!</p>`;
+        return;
+      }
+
+      list.innerHTML = reviews.map(r => `
+        <div class="review-item">
+          <div class="review-top">
+            <strong>${r.user}</strong>
+            <span style="color:var(--gray-600); font-size:12px;">Date: ${r.date}</span>
+          </div>
+          <div style="margin-bottom: 4px;">
+            ${App.renderStars(r.rating)}
+          </div>
+          <p style="font-size:13px; color:var(--gray-800);">${r.comment}</p>
+        </div>
+      `).join("");
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      const author = document.getElementById("review-author").value.trim();
+      const rating = parseFloat(document.getElementById("review-rating").value);
+      const comment = document.getElementById("review-comment").value.trim();
+
+      if (!author || !comment) return;
+
+      if (!currentProduct.reviews) currentProduct.reviews = [];
+      const newReview = {
+        user: author,
+        rating: rating,
+        date: new Date().toISOString().split("T")[0],
+        comment: comment
+      };
+
+      currentProduct.reviews.unshift(newReview);
+      
+      // Update overall product rating
+      const totalRating = currentProduct.reviews.reduce((sum, r) => sum + r.rating, 0);
+      currentProduct.rating = Number((totalRating / currentProduct.reviews.length).toFixed(1));
+      currentProduct.reviewsCount = currentProduct.reviews.length;
+
+      // Save to localStorage
+      const products = Storage.getProducts();
+      const idx = products.findIndex(p => p.id === currentProduct.id);
+      if (idx > -1) {
+        products[idx] = currentProduct;
+        Storage.saveProducts(products);
+      }
+
+      App.showToast("Review submitted successfully.", "success");
+      document.getElementById("add-review-form").reset();
+      renderProduct();
+    }
+
+    function renderRelated() {
+      const all = Storage.getProducts();
+      const related = all.filter(p => p.category === currentProduct.category && p.id !== currentProduct.id).slice(0, 3);
+      const container = document.getElementById("related-products-grid");
+      if (related.length === 0) {
+        container.innerHTML = `<p style="color:var(--gray-600); font-size:13px;">No other gadgets in this category currently.</p>`;
+      } else {
+        container.innerHTML = related.map(p => App.renderProductCard(p)).join("");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProduct();
+    });
+  </script>
+</body>
+</html>

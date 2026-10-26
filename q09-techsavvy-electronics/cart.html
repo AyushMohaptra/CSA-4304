@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Items in your cart are reserved for 30 minutes</div>
+    <div><a href="products.html">&larr; Continue Shopping</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link active">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <div class="section-header">
+      <h1 class="section-title">Shopping Cart</h1>
+      <span id="cart-item-count-text" style="font-size: 13px; color: var(--gray-600); font-weight:600;"></span>
+    </div>
+
+    <!-- Cart Layout Grid: Table on left, Summary on right -->
+    <div id="cart-content" style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+      
+      <!-- Cart Items Table Section -->
+      <div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Unit Price</th>
+                <th style="width: 130px;">Quantity</th>
+                <th>Subtotal</th>
+                <th style="text-align: center;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <a href="products.html" class="btn btn-outline btn-sm">&larr; Continue Shopping</a>
+        </div>
+      </div>
+
+      <!-- Order Summary Box -->
+      <div>
+        <div class="summary-box">
+          <h2 style="font-size: 16px; font-weight:700; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+            Order Summary
+          </h2>
+
+          <div class="summary-row">
+            <span>Items Subtotal:</span>
+            <span id="summary-subtotal" style="font-weight:600;">Rs. 0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Delivery & Courier:</span>
+            <span style="color:var(--success); font-weight:600;">FREE</span>
+          </div>
+
+          <!-- Promo Code Box -->
+          <div style="margin: 12px 0; padding: 10px; background: var(--gray-50); border-radius: 4px; border: 1px solid var(--border);">
+            <label class="form-label" style="margin-bottom:4px;">Apply Promo Coupon:</label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="coupon-input" class="form-control" placeholder="e.g. TECHSAVVY10" style="padding:6px 8px; text-transform:uppercase;">
+              <button class="btn btn-primary btn-sm" onclick="applyCoupon()">Apply</button>
+            </div>
+            <div id="coupon-message" style="font-size:12px; margin-top:4px;"></div>
+          </div>
+
+          <div class="summary-row" id="discount-row" style="display:none; color:var(--success);">
+            <span>Discount Applied:</span>
+            <span id="summary-discount">-Rs. 0</span>
+          </div>
+
+          <div class="summary-row summary-total">
+            <span>Grand Total:</span>
+            <span id="summary-grand-total" style="color:var(--primary);">Rs. 0</span>
+          </div>
+
+          <div style="margin-top: 18px;">
+            <a href="checkout.html" id="btn-proceed-checkout" class="btn btn-primary btn-block btn-lg">
+              Proceed to Checkout &rarr;
+            </a>
+          </div>
+
+          <div style="margin-top: 12px; font-size: 12px; color: var(--gray-600); text-align: center;">
+            Secure 256-bit SSL Checkout
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty Cart State -->
+    <div id="cart-empty-state" style="display:none; text-align:center; padding:40px 20px; background:#fff; border-radius:6px; border:1px solid var(--border);">
+      <h2 style="font-size:18px; margin-bottom:8px;">Your Shopping Cart is Empty</h2>
+      <p style="color:var(--gray-600); font-size:13px; margin-bottom:16px;">Explore our catalog to find smartphones, laptops, and smart gadgets.</p>
+      <a href="products.html" class="btn btn-primary btn-sm">Browse Catalog &rarr;</a>
+    </div>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    let appliedDiscountPercent = 0;
+
+    function renderCartPage() {
+      const cart = Storage.getCart();
+      const content = document.getElementById("cart-content");
+      const emptyState = document.getElementById("cart-empty-state");
+      const tbody = document.getElementById("cart-items-tbody");
+      const countText = document.getElementById("cart-item-count-text");
+
+      const totalItemsCount = App.getCartCount();
+      countText.textContent = `${totalItemsCount} item${totalItemsCount === 1 ? '' : 's'} in cart`;
+
+      if (cart.length === 0) {
+        content.style.display = "none";
+        emptyState.style.display = "block";
+        return;
+      }
+
+      content.style.display = "grid";
+      emptyState.style.display = "none";
+
+      tbody.innerHTML = cart.map(item => {
+        const itemSubtotal = item.price * item.quantity;
+        return `
+          <tr>
+            <td>
+              <div>
+                <a href="product-detail.html?id=${item.id}" style="font-weight:600; color:var(--dark); text-decoration:none;">
+                  ${item.name}
+                </a>
+                <div style="font-size:11px; color:var(--gray-600);">${item.category}</div>
+              </div>
+            </td>
+            <td><strong>${Storage.formatCurrency(item.price)}</strong></td>
+            <td>
+              <!-- Use Case 6: Edit Items in the Shopping Cart -->
+              <div class="qty-input-group">
+                <button type="button" class="qty-btn" onclick="handleQtyChange('${item.id}', ${item.quantity - 1})">-</button>
+                <input type="number" class="qty-field" value="${item.quantity}" min="1" 
+                       onchange="handleQtyChange('${item.id}', parseInt(this.value) || 1)">
+                <button type="button" class="qty-btn" onclick="handleQtyChange('${item.id}', ${item.quantity + 1})">+</button>
+              </div>
+            </td>
+            <td><strong>${Storage.formatCurrency(itemSubtotal)}</strong></td>
+            <td style="text-align: center;">
+              <!-- Use Case 7: Remove Items from the Shopping Cart -->
+              <button class="btn btn-outline btn-sm" style="color:var(--danger); border-color:#fecaca;" 
+                      onclick="handleItemRemove('${item.id}')" title="Remove Item">
+                Remove
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      updateSummary();
+    }
+
+    function handleQtyChange(id, newQty) {
+      App.updateCartQuantity(id, newQty);
+      renderCartPage();
+    }
+
+    function handleItemRemove(id) {
+      if (confirm("Remove this item from your shopping cart?")) {
+        App.removeFromCart(id);
+        renderCartPage();
+      }
+    }
+
+    function clearWholeCart() {
+      if (confirm("Are you sure you want to clear your entire cart?")) {
+        App.clearCart();
+        App.showToast("Shopping cart cleared.", "info");
+        renderCartPage();
+      }
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById("coupon-input").value.trim().toUpperCase();
+      const msg = document.getElementById("coupon-message");
+
+      if (!code) {
+        msg.innerHTML = `<span style="color:var(--danger);">Please enter a coupon code.</span>`;
+        return;
+      }
+
+      if (code === "TECHSAVVY10") {
+        appliedDiscountPercent = 10;
+        sessionStorage.setItem("techsavvy_promo", JSON.stringify({ code: "TECHSAVVY10", percent: 10 }));
+        msg.innerHTML = `<span style="color:var(--success);">10% Discount applied!</span>`;
+        App.showToast("Coupon TECHSAVVY10 applied (10% OFF).", "success");
+      } else if (code === "GADGET5") {
+        appliedDiscountPercent = 5;
+        sessionStorage.setItem("techsavvy_promo", JSON.stringify({ code: "GADGET5", percent: 5 }));
+        msg.innerHTML = `<span style="color:var(--success);">5% Student discount applied!</span>`;
+        App.showToast("Coupon GADGET5 applied (5% OFF).", "success");
+      } else {
+        msg.innerHTML = `<span style="color:var(--danger);">Invalid code. Try TECHSAVVY10</span>`;
+      }
+      updateSummary();
+    }
+
+    function updateSummary() {
+      const subtotal = App.getCartSubtotal();
+      document.getElementById("summary-subtotal").textContent = Storage.formatCurrency(subtotal);
+
+      let discountAmount = 0;
+      const discountRow = document.getElementById("discount-row");
+
+      // Check stored coupon
+      const storedPromo = sessionStorage.getItem("techsavvy_promo");
+      if (storedPromo && appliedDiscountPercent === 0) {
+        appliedDiscountPercent = JSON.parse(storedPromo).percent;
+      }
+
+      if (appliedDiscountPercent > 0) {
+        discountAmount = Math.round((subtotal * appliedDiscountPercent) / 100);
+        discountRow.style.display = "flex";
+        document.getElementById("summary-discount").textContent = `-${Storage.formatCurrency(discountAmount)}`;
+      } else {
+        discountRow.style.display = "none";
+      }
+
+      const grandTotal = Math.max(0, subtotal - discountAmount);
+      document.getElementById("summary-grand-total").textContent = Storage.formatCurrency(grandTotal);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCartPage();
+    });
+  </script>
+</body>
+</html>

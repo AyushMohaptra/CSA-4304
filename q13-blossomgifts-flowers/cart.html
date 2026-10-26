@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlossomGifts Floral Boutique | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html">Track Order</a>
+    <a href="admin.html">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Your Selected Gifts</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Subtotal</th><th>Action</th></tr></thead>
+    <tbody id="giftCartBody"></tbody>
+  </table>
+  <div class="card" style="max-width:400px; margin-top:1.5rem; margin-left:auto;">
+    <h3>Total: <span id="giftTotal" style="color:var(--primary);">₹0</span></h3>
+    <a href="order.html" class="btn" style="width:100%; margin-top:0.5rem;">Add Card & Checkout</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

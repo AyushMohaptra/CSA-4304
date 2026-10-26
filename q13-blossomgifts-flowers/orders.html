@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Gift Order | BlossomGifts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">BlossomGifts</a>
+  <div class="nav-links">
+    <a href="index.html">Flowers & Gifts</a>
+    <a href="cart.html">Gift Cart</a>
+    <a href="order.html">Custom Greeting</a>
+    <a href="checkout.html">Checkout</a>
+    <a href="orders.html" class="active">Track Order</a>
+    <a href="admin.html">Admin Desk</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Real-time Order Status & Tracking</h2>
+  <div class="card" style="max-width:550px; margin-top:1.5rem;">
+    <div class="form-group">
+      <label>Enter Order ID</label>
+      <div style="display:flex; gap:0.5rem;">
+        <input type="text" id="trackOrderId" placeholder="Ex: BLOSSOM-12345" style="text-transform:uppercase;">
+        <button class="btn" onclick="trackGiftOrder()">Track</button>
+      </div>
+    </div>
+    <div id="trackingResult"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 BlossomGifts Floral Boutique. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+  // Check URL param if redirected
+  const params = new URLSearchParams(window.location.search);
+  const ordParam = params.get('id');
+  if (ordParam) {
+    document.getElementById('trackOrderId').value = ordParam;
+    trackGiftOrder();
+  }
+</script>
+</body>
+</html>

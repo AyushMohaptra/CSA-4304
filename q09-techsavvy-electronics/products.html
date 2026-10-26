@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Free courier shipping on gadget orders above Rs. 20,000 | Code: TECHSAVVY10</div>
+    <div><a href="cart.html">View Shopping Cart &rarr;</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link active">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <div class="section-header">
+      <h1 class="section-title">Product Catalog</h1>
+      <span id="results-count" style="font-size: 13px; color: var(--gray-600); font-weight:600;">Showing all products</span>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="filter-card">
+      <div class="filter-row">
+        <!-- Search Keyword -->
+        <div class="search-input-wrap">
+          <input type="text" id="search-input" class="input-text" placeholder="Search by gadget name, processor, brand (e.g. S24, M3, Sony)..." oninput="applyFilters()">
+        </div>
+
+        <!-- Category Dropdown -->
+        <select id="category-filter" class="filter-select" onchange="onCategoryChange()">
+          <option value="all">All Categories</option>
+          <option value="Smartphones">Smartphones</option>
+          <option value="Laptops">Laptops</option>
+          <option value="Tablets">Tablets</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+
+        <!-- Subcategory Dropdown -->
+        <select id="subcategory-filter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All Subcategories</option>
+        </select>
+
+        <!-- Availability Filter (Use Case 4) -->
+        <select id="stock-filter" class="filter-select" onchange="applyFilters()">
+          <option value="all">Stock: All Items</option>
+          <option value="in_stock">In Stock Only</option>
+          <option value="out_of_stock">Out of Stock Only</option>
+        </select>
+
+        <!-- Sort Option -->
+        <select id="sort-filter" class="filter-select" onchange="applyFilters()">
+          <option value="default">Sort by: Default</option>
+          <option value="price_low">Price: Low to High</option>
+          <option value="price_high">Price: High to Low</option>
+          <option value="rating">Top Customer Rating</option>
+        </select>
+
+        <button class="btn btn-outline btn-sm" onclick="resetFilters()">Reset Filters</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="catalog-grid">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="no-products-msg" style="display: none; text-align: center; padding: 40px; background:#fff; border-radius:6px; border:1px solid var(--border);">
+      <h3 style="color:var(--gray-800); margin-bottom: 8px;">No matching electronics found</h3>
+      <p style="font-size:13px; color:var(--gray-600); margin-bottom: 16px;">Try adjusting your keyword search or category filters.</p>
+      <button class="btn btn-primary btn-sm" onclick="resetFilters()">Clear Filters</button>
+    </div>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>TechSavvy Store</h4>
+        <p>A leading online shopping platform for electronic gadgets, laptops, smartphones and accessories.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="cart.html">Shopping Cart</a></li>
+          <li><a href="orders.html">Order Status & Tracking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account & Admin</h4>
+        <ul>
+          <li><a href="login.html">Login / Register</a></li>
+          <li><a href="admin.html">Administrator Dashboard</a></li>
+          <li><a href="wishlist.html">Wishlist</a></li>
+          <li><a href="leave.html">Leave Site</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Subcategories mapping
+    const SUBCATS_MAP = {
+      "Smartphones": ["Flagship 5G", "Budget Android", "iOS iPhones"],
+      "Laptops": ["Gaming Laptops", "Ultrabooks", "Business Notebooks"],
+      "Tablets": ["iPad Series", "Android Tablets", "Drawing Stylus Tablets"],
+      "Accessories": ["Wireless Audio", "Smartwatches", "Fast Chargers & Cables"]
+    };
+
+    function populateSubcategories(selectedCategory, preselectSub = "all") {
+      const subcatSelect = document.getElementById("subcategory-filter");
+      subcatSelect.innerHTML = '<option value="all">All Subcategories</option>';
+
+      if (selectedCategory && selectedCategory !== "all" && SUBCATS_MAP[selectedCategory]) {
+        SUBCATS_MAP[selectedCategory].forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          if (sub === preselectSub) opt.selected = true;
+          subcatSelect.appendChild(opt);
+        });
+      }
+    }
+
+    function onCategoryChange() {
+      const cat = document.getElementById("category-filter").value;
+      populateSubcategories(cat);
+      applyFilters();
+    }
+
+    function resetFilters() {
+      document.getElementById("search-input").value = "";
+      document.getElementById("category-filter").value = "all";
+      document.getElementById("subcategory-filter").innerHTML = '<option value="all">All Subcategories</option>';
+      document.getElementById("stock-filter").value = "all";
+      document.getElementById("sort-filter").value = "default";
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = document.getElementById("search-input").value.trim().toLowerCase();
+      const selectedCategory = document.getElementById("category-filter").value;
+      const selectedSubcategory = document.getElementById("subcategory-filter").value;
+      const stockFilter = document.getElementById("stock-filter").value;
+      const sortFilter = document.getElementById("sort-filter").value;
+
+      let products = Storage.getProducts();
+
+      // 1. Category Filter
+      if (selectedCategory !== "all") {
+        products = products.filter(p => p.category.toLowerCase() === selectedCategory.toLowerCase());
+      }
+
+      // 2. Subcategory Filter
+      if (selectedSubcategory !== "all") {
+        products = products.filter(p => p.subcategory && p.subcategory.toLowerCase() === selectedSubcategory.toLowerCase());
+      }
+
+      // 3. Stock Availability Filter (Use Case 4)
+      if (stockFilter === "in_stock") {
+        products = products.filter(p => p.stock > 0);
+      } else if (stockFilter === "out_of_stock") {
+        products = products.filter(p => p.stock <= 0);
+      }
+
+      // 4. Text Search (Name, specs, description)
+      if (query) {
+        products = products.filter(p => {
+          const nameMatch = p.name.toLowerCase().includes(query);
+          const descMatch = p.description.toLowerCase().includes(query);
+          const subMatch = (p.subcategory || "").toLowerCase().includes(query);
+          const specsMatch = Object.values(p.specs || {}).some(val => String(val).toLowerCase().includes(query));
+          return nameMatch || descMatch || subMatch || specsMatch;
+        });
+      }
+
+      // 5. Sorting
+      if (sortFilter === "price_low") {
+        products.sort((a, b) => a.price - b.price);
+      } else if (sortFilter === "price_high") {
+        products.sort((a, b) => b.price - a.price);
+      } else if (sortFilter === "rating") {
+        products.sort((a, b) => b.rating - a.rating);
+      }
+
+      // Render
+      const grid = document.getElementById("catalog-grid");
+      const emptyMsg = document.getElementById("no-products-msg");
+      const countLabel = document.getElementById("results-count");
+
+      countLabel.textContent = `Showing ${products.length} product${products.length === 1 ? '' : 's'}`;
+
+      if (products.length === 0) {
+        grid.innerHTML = "";
+        emptyMsg.style.display = "block";
+      } else {
+        emptyMsg.style.display = "none";
+        grid.innerHTML = products.map(p => App.renderProductCard(p)).join("");
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check URL query parameters
+      const urlCat = App.getQueryParam("category");
+      const urlSub = App.getQueryParam("subcategory");
+      const urlSearch = App.getQueryParam("search");
+
+      if (urlCat) {
+        document.getElementById("category-filter").value = urlCat;
+        populateSubcategories(urlCat, urlSub || "all");
+      }
+      if (urlSearch) {
+        document.getElementById("search-input").value = urlSearch;
+      }
+
+      applyFilters();
+    });
+  </script>
+</body>
+</html>

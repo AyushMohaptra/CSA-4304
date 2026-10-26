@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComplainEase Grievance Redressal | ComplainEase Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">ComplainEase Portal</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Lodge Grievance</a>
+    <a href="track.html">Track Status</a>
+    <a href="admin.html">Admin Resolution</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #0369a1, #0284c7);">
+    <h1>ComplainEase Public Redressal</h1>
+    <p>File municipal, civic, electricity, or road grievances with guaranteed response tracking.</p>
+  </div>
+  <div class="card" style="max-width:600px;">
+    <h3>File a New Complaint</h3>
+    <form onsubmit="lodgeComplaint(event)">
+      <div class="form-group">
+        <label>Complainant Name</label>
+        <input type="text" id="cmpName" required placeholder="Rajesh Kumar">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="cmpCat">
+          <option>Electricity & Streetlights</option>
+          <option>Roads & Potholes</option>
+          <option>Water Supply & Drainage</option>
+          <option>Garbage & Sanitation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Locality / Address</label>
+        <input type="text" id="cmpLoc" required placeholder="4th Cross, Gandhi Nagar">
+      </div>
+      <div class="form-group">
+        <label>Detailed Description</label>
+        <textarea id="cmpDesc" rows="3" required placeholder="Streetlight not functioning for past 5 days..."></textarea>
+      </div>
+      <button type="submit" class="btn">Register Grievance</button>
+    </form>
+    <div id="lodgeResult"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 ComplainEase Grievance Redressal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

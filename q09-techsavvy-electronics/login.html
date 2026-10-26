@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Registration | TechSavvy</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 18px;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 9px;
+      text-align: center;
+      background: none;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--gray-600);
+    }
+    .auth-tab-btn.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: -2px;
+    }
+    .demo-login-box {
+      background: var(--gray-50);
+      border: 1px dashed var(--gray-300);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 18px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div>Sign in to your TechSavvy account or create a new profile</div>
+    <div><a href="index.html">&larr; Return to Home</a></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span>TechSavvy</span>
+        <span class="brand-tag">Store</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">All Products</a></li>
+        <li>
+          <a href="cart.html" class="nav-link">
+            Cart <span class="nav-badge cart-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li>
+          <a href="wishlist.html" class="nav-link">
+            Wishlist <span class="nav-badge wishlist-count-badge" style="display:none;">0</span>
+          </a>
+        </li>
+        <li><a href="orders.html" class="nav-link">Order History</a></li>
+        <li><a href="admin.html" class="nav-link admin-nav-pill">Admin Panel</a></li>
+        <li id="nav-user-display"><span class="user-pill-guest">Guest</span></li>
+        <li id="nav-auth-link"><a href="login.html" class="nav-link active">Login</a></li>
+        <li><a href="leave.html" class="nav-link" style="color:var(--danger)">Leave Site</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+
+    <!-- Active Session Banner if logged in -->
+    <div id="active-session-card" style="display:none; max-width:480px; margin:0 auto 20px auto; background:var(--success-bg); border:1px solid #a7f3d0; border-radius:var(--radius); padding:14px; text-align:center;">
+      <h3 style="font-size:14px; font-weight:700; color:var(--success); margin-bottom:4px;">You are currently logged in</h3>
+      <p style="font-size:13px; margin-bottom:12px;" id="active-user-info"></p>
+      <div style="display:flex; justify-content:center; gap:8px;">
+        <button class="btn btn-danger btn-sm" onclick="App.handleLogout()">Log Out</button>
+        <a href="products.html" class="btn btn-primary btn-sm">Continue Shopping</a>
+      </div>
+    </div>
+
+    <!-- Auth Card Form -->
+    <div class="form-card" style="max-width: 440px;">
+      
+      <!-- Quick Demo Login Buttons -->
+      <div class="demo-login-box">
+        <strong>Demo Account Quick Access:</strong>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="quickDemoLogin('customer')">
+            Demo Customer
+          </button>
+          <button type="button" class="btn btn-outline btn-sm" style="flex:1; border-color:var(--danger); color:var(--danger);" onclick="quickDemoLogin('admin')">
+            Demo Admin
+          </button>
+        </div>
+      </div>
+
+      <!-- Auth Tabs: Login vs Register -->
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab-btn active" id="tab-login" onclick="setAuthTab('login')">Sign In</button>
+        <button type="button" class="auth-tab-btn" id="tab-register" onclick="setAuthTab('register')">Register New Account</button>
+      </div>
+
+      <!-- SIGN IN FORM -->
+      <form id="login-form" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <input type="email" id="login-email" class="form-control" placeholder="customer@techsavvy.com or admin@techsavvy.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password *</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter password (e.g. password123)" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Sign in as Role:</label>
+          <select id="login-role" class="form-control">
+            <option value="customer">Customer / Shopper</option>
+            <option value="admin">System Administrator</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 8px;">
+          Sign In
+        </button>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="register-form" style="display:none;" onsubmit="handleRegisterSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name *</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Priya Sharma" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address *</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="priya@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone Number *</label>
+          <input type="tel" id="reg-phone" class="form-control" placeholder="+91 98765 11111" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Create Password *</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="Minimum 6 characters" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Register As:</label>
+          <select id="reg-role" class="form-control">
+            <option value="customer">Regular Customer</option>
+            <option value="admin">Store Administrator</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 8px;">
+          Create Account
+        </button>
+      </form>
+
+    </div>
+
+  </main>
+
+  <!-- Store Footer -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      &copy; 2026 TechSavvy Retailer. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    function setAuthTab(tab) {
+      const loginForm = document.getElementById("login-form");
+      const regForm = document.getElementById("register-form");
+      const tabLogin = document.getElementById("tab-login");
+      const tabReg = document.getElementById("tab-register");
+
+      if (tab === "login") {
+        loginForm.style.display = "block";
+        regForm.style.display = "none";
+        tabLogin.classList.add("active");
+        tabReg.classList.remove("active");
+      } else {
+        loginForm.style.display = "none";
+        regForm.style.display = "block";
+        tabLogin.classList.remove("active");
+        tabReg.classList.add("active");
+      }
+    }
+
+    function checkActiveSession() {
+      const user = Storage.getCurrentUser();
+      const sessionCard = document.getElementById("active-session-card");
+      const userInfo = document.getElementById("active-user-info");
+
+      if (user) {
+        sessionCard.style.display = "block";
+        userInfo.innerHTML = `Signed in as: <strong>${user.name}</strong> (${user.email}) &bull; Role: <span class="badge ${user.role === 'admin' ? 'badge-danger' : 'badge-info'}">${user.role.toUpperCase()}</span>`;
+      } else {
+        sessionCard.style.display = "none";
+      }
+    }
+
+    function quickDemoLogin(role) {
+      if (role === "admin") {
+        Storage.setCurrentUser({
+          name: "System Administrator",
+          email: "admin@techsavvy.com",
+          role: "admin",
+          phone: "+91 90000 11111"
+        });
+        App.showToast("Signed in as Administrator.", "success");
+        setTimeout(() => window.location.href = "admin.html", 400);
+      } else {
+        Storage.setCurrentUser({
+          name: "Demo Customer",
+          email: "customer@techsavvy.com",
+          role: "customer",
+          phone: "+91 98888 77777"
+        });
+        App.showToast("Signed in as Customer.", "success");
+        setTimeout(() => window.location.href = "products.html", 400);
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim().toLowerCase();
+      const password = document.getElementById("login-password").value;
+      const role = document.getElementById("login-role").value;
+
+      const registered = Storage.getRegisteredUsers();
+      const match = registered.find(u => u.email.toLowerCase() === email && u.password === password);
+
+      if (match) {
+        Storage.setCurrentUser(match);
+        App.showToast(`Welcome back, ${match.name}!`, "success");
+        setTimeout(() => {
+          if (match.role === "admin") {
+            window.location.href = "admin.html";
+          } else {
+            window.location.href = "products.html";
+          }
+        }, 400);
+      } else {
+        const fallbackUser = {
+          name: email.split("@")[0].toUpperCase(),
+          email: email,
+          role: role,
+          phone: "+91 99999 88888"
+        };
+        Storage.setCurrentUser(fallbackUser);
+        App.showToast(`Signed in successfully as ${fallbackUser.name}`, "success");
+        setTimeout(() => {
+          window.location.href = role === "admin" ? "admin.html" : "products.html";
+        }, 400);
+      }
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("reg-name").value.trim();
+      const email = document.getElementById("reg-email").value.trim().toLowerCase();
+      const phone = document.getElementById("reg-phone").value.trim();
+      const password = document.getElementById("reg-password").value;
+      const role = document.getElementById("reg-role").value;
+
+      const users = Storage.getRegisteredUsers();
+      if (users.some(u => u.email.toLowerCase() === email)) {
+        App.showToast("Email already registered! Please sign in.", "warning");
+        setAuthTab("login");
+        return;
+      }
+
+      const newUser = { name, email, phone, password, role };
+      users.push(newUser);
+      Storage.saveRegisteredUsers(users);
+
+      Storage.setCurrentUser(newUser);
+      App.showToast("Account created successfully. Welcome to TechSavvy.", "success");
+      setTimeout(() => {
+        window.location.href = role === "admin" ? "admin.html" : "products.html";
+      }, 400);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      checkActiveSession();
+    });
+  </script>
+</body>
+</html>
