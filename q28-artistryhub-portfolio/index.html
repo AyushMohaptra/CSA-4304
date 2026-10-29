@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtistryHub Artist Portfolio | ArtistryHub - Emily Harris</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">ArtistryHub - Emily Harris</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Gallery</a>
+    <a href="about.html">About Artist</a>
+    <a href="exhibitions.html">Exhibitions & News</a>
+    
+      <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #4c1d95, #8b5cf6);">
+    <h1>ArtistryHub • Emily Harris Portfolio</h1>
+    <p>Contemporary oil, watercolor & digital fine art exploring human emotion and natural landscapes.</p>
+  </div>
+  <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="filterArt('all')">All Works</button>
+    <button class="btn btn-secondary btn-sm" onclick="filterArt('Oil')">Oil on Canvas</button>
+    <button class="btn btn-secondary btn-sm" onclick="filterArt('Watercolor')">Watercolor</button>
+  </div>
+  <div class="card-grid" id="artGrid"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 ArtistryHub Artist Portfolio. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

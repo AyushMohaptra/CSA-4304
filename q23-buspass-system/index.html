@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Bus Pass Portal | Smart Bus Pass Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">SmartBus Pass System</a>
+  <div class="nav-links">
+    <a href="index.html">Apply Bus Pass</a>
+    <a href="routes.html">Route Information</a>
+    <a href="verify.html">Verify Pass</a>
+    <a href="admin.html">Authority Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero" style="background: linear-gradient(135deg, #15803d, #047857);">
+    <h1>State Smart Bus Pass Portal</h1>
+    <p>Automated concession pass issuance for School/College students, senior citizens & daily commuters.</p>
+  </div>
+  <div class="card" style="max-width:600px;">
+    <h3>New Bus Pass Registration</h3>
+    <form onsubmit="applyPass(event)">
+      <div class="form-group">
+        <label>Applicant Full Name</label>
+        <input type="text" id="bpName" required placeholder="Surya Prakash">
+      </div>
+      <div class="form-group">
+        <label>Pass Category</label>
+        <select id="bpCat" onchange="updatePassFee()">
+          <option value="0">Government School Student (100% FREE)</option>
+          <option value="200">College / Private School Student (₹200/month)</option>
+          <option value="500">General Public Commuter (₹500/month)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Institution / Workplace Name</label>
+        <input type="text" id="bpInst" required placeholder="Govt Higher Secondary School">
+      </div>
+      <div class="form-group">
+        <label>Origin & Destination Stops</label>
+        <div style="display:flex; gap:0.5rem;">
+          <input type="text" id="bpFrom" required placeholder="From (e.g. Tambaram)">
+          <input type="text" id="bpTo" required placeholder="To (e.g. Guindy)">
+        </div>
+      </div>
+      <div class="alert alert-success" id="feeDisplay">
+        Pass Fee Payable: <strong>₹0.00 (Government Subsidized)</strong>
+      </div>
+      <button type="submit" class="btn">Generate Digital Bus Pass</button>
+    </form>
+    <div id="passCardResult"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Smart Bus Pass Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Bus Pass Portal | Smart Bus Pass Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">SmartBus Pass System</a>
+  <div class="nav-links">
+    <a href="index.html">Apply Bus Pass</a>
+    <a href="routes.html">Route Information</a>
+    <a href="verify.html">Verify Pass</a>
+    <a href="admin.html">Authority Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <h2>Conductor QR Pass Verifier</h2>
+  <div class="card" style="max-width:500px;">
+    <div class="form-group">
+      <label>Enter Digital Pass ID</label>
+      <input type="text" id="verPassId" placeholder="e.g. PASS-9201">
+    </div>
+    <button class="btn" onclick="verifyPassId()">Scan / Verify Bus Pass</button>
+    <div id="verifyResult" style="margin-top:1rem;"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Smart Bus Pass Portal. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

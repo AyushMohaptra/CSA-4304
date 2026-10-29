@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transport Authority Pass Admin | SmartBus Pass</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="index.html" class="logo">SmartBus Pass System</a>
+  <div class="nav-links">
+    <a href="index.html">Apply Bus Pass</a>
+    <a href="routes.html">Route Information</a>
+    <a href="verify.html">Verify Pass</a>
+    <a href="admin.html" class="active">Authority Admin</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Transport Department Administration Desk</h2>
+  <p style="color:#64748b; margin-bottom:1.5rem;">Manage student and route bus pass approvals, generate digital QR passes, and configure routes.</p>
+
+  <div class="card" style="margin-bottom:2rem;">
+    <h3>Pending Bus Pass Approvals & Issued Passes</h3>
+    <div style="overflow-x:auto; margin-top:1rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Pass ID</th>
+            <th>Candidate Name</th>
+            <th>Pass Category</th>
+            <th>Institution / Employer</th>
+            <th>Fee Paid</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminPassBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Configure New Bus Route & Timings</h3>
+    <form onsubmit="adminAddRoute(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-top:1rem; align-items:end;">
+      <div class="form-group" style="margin:0;">
+        <label>Route Number</label>
+        <input type="text" id="rNo" required placeholder="Ex: 570-X">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Origin Terminal</label>
+        <input type="text" id="rFrom" required placeholder="Tambaram MEPZ">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Destination Terminal</label>
+        <input type="text" id="rTo" required placeholder="Siruseri IT Park">
+      </div>
+      <div class="form-group" style="margin:0;">
+        <label>Operating Hours</label>
+        <input type="text" id="rHours" required placeholder="05:30 AM - 10:45 PM">
+      </div>
+      <div>
+        <button type="submit" class="btn" style="width:100%;">+ Save Bus Route</button>
+      </div>
+    </form>
+    <div id="routeAlert"></div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Metropolitan Transport Corporation. All rights reserved.</p>
+</footer>
+<script src="script.js"></script>
+<script>
+function renderAdminPasses() {
+  const tbody = document.getElementById('adminPassBody');
+  if (!tbody) return;
+  const list = JSON.parse(localStorage.getItem('smart_bus_passes') || '[]');
+  if (list.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#64748b;">No pass applications submitted yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = '';
+  list.forEach((p, idx) => {
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${p.id}</strong></td>
+        <td>${p.name}</td>
+        <td>${p.cat}</td>
+        <td>${p.inst}</td>
+        <td>₹${p.fee}</td>
+        <td><span class="badge-tag" style="background:#ecfdf5; color:#065f46;">APPROVED</span></td>
+        <td>
+          <button class="btn btn-sm" onclick="alert('Digital Bus Pass QR code sent to candidate email.')">Send QR Pass</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function adminAddRoute(e) {
+  e.preventDefault();
+  const no = document.getElementById('rNo').value.trim();
+  const f = document.getElementById('rFrom').value.trim();
+  const t = document.getElementById('rTo').value.trim();
+  document.getElementById('routeAlert').innerHTML = `
+    <div class="card" style="margin-top:1rem; background:#ecfdf5; color:#065f46;">
+      Route <strong>${no}</strong> (${f} ↔ ${t}) published to transport network schedules.
+    </div>
+  `;
+  e.target.reset();
+}
+
+document.addEventListener('DOMContentLoaded', renderAdminPasses);
+</script>
+</body>
+</html>
